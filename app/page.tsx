@@ -48,10 +48,6 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8">
-                  <Heart className="w-4 h-4 text-primary fill-primary" />
-                  <span className="text-sm text-primary font-medium">Gerakan Komunitas</span>
-                </div>
               </motion.div>
 
               <motion.h1
@@ -70,8 +66,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed text-balance"
               >
-                Buat perbedaan yang kuat dengan berbagi yang transparan dan terpercaya. Setiap kontribusi
-                membawa harapan dan dukungan bagi mereka yang membutuhkan.
+                Bersama Kita Bisa Membantu Lebih Banyak Setiap donasi yang Anda berikan akan membantu menghadirkan harapan baru bagi mereka yang membutuhkan.
               </motion.p>
 
               <motion.div
@@ -101,9 +96,9 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.45 }}
               className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16 max-w-4xl mx-auto"
             >
-              <StatCard label="Donatur Aktif" value="500+" delay={0.5} />
+             {/* <StatCard label="Donatur Aktif" value="500+" delay={0.5} />
               <StatCard label="Total Terkumpul" value="Rp 50M+" delay={0.55} />
-              <StatCard label="Kehidupan Terbantu" value="1000+" delay={0.6} />
+              <StatCard label="Kehidupan Terbantu" value="1000+" delay={0.6} /> */}
             </motion.div>
           </div>
         </section>
@@ -131,7 +126,7 @@ export default function Home() {
                 icon: Users,
                 title: 'Gerakan Komunitas',
                 body:
-                  'Devilish Charity digerakkan oleh komunitas. Bersama, kita saling membantu dan menghadirkan dampak nyata bagi sesama.',
+                  'Devilish Charity digerakkan oleh Devilish Community. Bersama, kita saling membantu dan menghadirkan dampak nyata bagi sesama.',
               },
               {
                 icon: Heart,
@@ -174,11 +169,11 @@ export default function Home() {
                 <Heart className="w-8 h-8 text-primary fill-primary" />
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-                Buat Perbedaan yang <span className="text-primary">Kuat</span> Hari Ini
+                Bersama, Kita Buat Perubahan yang <span className="text-primary">Berarti</span>
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 text-balance">
-                Setiap donasi yang kamu berikan menciptakan dampak nyata. Dari dukungan komunitas hingga proyek
-                bermakna, kontribusi kamu membuat perbedaan di tempat yang paling penting.
+                Dari dukungan komunitas hingga proyek bermakna, donasi kamu menghadirkan harapan, bantuan, dan masa depan. 
+                Setiap donasi yang kamu berikan menciptakan dampak bagi mereka yang membutuhkan. 
               </p>
               <Link href="/donate">
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg">

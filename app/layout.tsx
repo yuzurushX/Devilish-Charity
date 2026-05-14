@@ -8,9 +8,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Devilish Charity - Platform Berbagi Terpercaya',
-  description: 'Platform berbagi yang kuat untuk membuat perbedaan. Pantau kontribusi Anda dan dukung mereka yang membutuhkan dengan transparansi dan kepercayaan.',
-  generator: 'v0.app',
+  title: 'Devilish Charity',
+  description: 'Platform berbagi yang kuat untuk membuat perbedaan bersama dengan Devilish Community.',
   icons: {
     icon: [
       {

@@ -23,7 +23,7 @@ export default function Guide() {
               Panduan <span className="text-primary">Donasi</span>
             </h1>
             <p className="text-lg md:text-xl max-w-2xl mx-auto text-muted-foreground leading-relaxed text-balance">
-              Ikuti langkah-langkah sederhana ini to make your donation and contribute to meaningful causes with Devilish Charity.
+              Ikuti langkah-langkah sederhana ini untuk berdonasi dan berkontribusi dalam menciptakan dampak positif bersama Devilish Charity.
             </p>
           </div>
         </div>
@@ -43,12 +43,8 @@ export default function Guide() {
                   Klik Tombol Donasi
                 </h3>
                 <p className="mb-4 text-muted-foreground">
-                  Go to the donation page and click the <b>Donate Now</b> button to
-                  start the form process.
+                  Pada halaman utama, klik tombol <b>Donasi Sekarang</b> untuk memulai proses donasi.
                 </p>
-                <div className="p-4 rounded-lg text-sm bg-primary/5 text-foreground border border-primary/20">
-                  💡 Tip: Prepare your donation amount and payment method before proceeding.
-                </div>
               </div>
             </div>
           </Card>
@@ -64,31 +60,11 @@ export default function Guide() {
                   Isi Data Donasi
                 </h3>
                 <p className="mb-4 text-muted-foreground">
-                  Enter your donation amount and payment details. Optionally add your name, Discord username, and a message. You can use the <b>anonymous donation</b> option to hide your name and Discord on the public transparency list (admins still verify your payment).
+                  Masukkan jumlah donasi dan detail informasi Anda. Anda dapat menggunakan opsi <b>Donasi Anomim</b> untuk menyembunyikan nama dan Discord Anda dari daftar transparansi publik (admin tetap memverifikasi pembayaran Anda).
                 </p>
-                <div className="p-4 rounded-lg text-sm bg-primary/5 text-foreground border border-primary/20">
-                  💡 If you are not anonymous, your Discord username helps us contact you if needed.
-                </div>
               </div>
-            </div>
-          </Card>
-
-          {/* Step 3 */}
-          <Card className="p-8 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40">
-            <div className="flex gap-6">
-              <div className="flex items-center justify-center h-12 w-12 rounded-lg text-white text-lg font-bold bg-primary/20 text-primary shrink-0">
-                3
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold mb-3 text-primary">
-                  Pilih Metode Pembayaran
-                </h3>
-                <p className="mb-4 text-muted-foreground">
-                  Pilih metode pembayaran favorit Anda seperti transfer bank atau dompet digital.
-                </p>
-                <div className="p-4 rounded-lg text-sm bg-primary/5 text-foreground border border-primary/20">
-                  💡 Gunakan metode yang paling nyaman untuk Anda.
-                </div>
+              <div className="mt-4 p-4 rounded-lg text-sm bg-primary/5 text-foreground border border-primary/20">
+                💡 Dengan mengisi username Discord, anda akan diundang ke server Discord Devilish dan mendapatkan update kegiatan charity.
               </div>
             </div>
           </Card>
@@ -130,21 +106,21 @@ export default function Guide() {
             </div>
           </Card>
 
-          {/* Step 4 */}
+          {/* Step 3 */}
           <Card className="p-8 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40">
             <div className="flex gap-6">
               <div className="flex items-center justify-center h-12 w-12 rounded-lg text-white text-lg font-bold bg-primary/20 text-primary shrink-0">
-                4
+                3
               </div>
               <div>
                 <h3 className="text-2xl font-bold mb-3 text-primary">
                   Upload Bukti Transfer
                 </h3>
                 <p className="mb-4 text-muted-foreground">
-                  Upload your payment receipt so our team can verify your donation.
+                  Upload bukti transfer sehingga admin dapat memverifikasi donasi Anda.
                 </p>
                 <div className="p-4 rounded-lg text-sm bg-primary/5 text-foreground border border-primary/20">
-                  💡 Make sure the amount and transaction details are clearly visible.
+                💡 Pastikan jumlah, nama, dan detail transaksi terlihat jelas agar admin dapat memverifikasi donasi Anda.
                 </div>
               </div>
             </div>
@@ -154,17 +130,17 @@ export default function Guide() {
           <Card className="p-8 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40">
             <div className="flex gap-6">
               <div className="flex items-center justify-center h-12 w-12 rounded-lg text-white text-lg font-bold bg-primary/20 text-primary shrink-0">
-                5
+                4
               </div>
               <div>
                 <h3 className="text-2xl font-bold mb-3 text-primary">
-                  Kirim Submit & Wait for Verification Tunggu Verifikasi
+                  Kirim dan Tunggu Verifikasi
                 </h3>
                 <p className="mb-4 text-muted-foreground">
-                  After submission, your donation will be verified by our admin team. Approved donations will appear on the Transparency page.
+                 Donasi Anda akan diverifikasi oleh tim admin. Donasi yang disetujui akan muncul di halaman Transparansi.
                 </p>
                 <div className="p-4 rounded-lg text-sm bg-primary/5 text-foreground border border-primary/20">
-                  💡 Verification typically takes up to 24 hours.
+                  💡 Verifikasi biasanya memakan waktu hingga 24 jam. Anda bisa cek berkala di halaman Transparnasi.
                 </div>
               </div>
             </div>
@@ -184,37 +160,37 @@ export default function Guide() {
             <div className="space-y-6">
               <div className="border-b border-primary/20 pb-6">
                 <h3 className="font-bold mb-2 text-primary">
-                  How long does verification take?
+                  Berapa lama proses verifikasi berlangsung?
                 </h3>
                 <p className="text-muted-foreground">
-                  Typically up to 24 hours after you submit your proof of payment.
+                  Biasanya hingga 24 jam setelah Anda mengirimkan pengajuan verifikasi.
                 </p>
               </div>
 
               <div className="border-b border-primary/20 pb-6">
                 <h3 className="font-bold mb-2 text-primary">
-                  Is my data secure?
+                  Apakah data saya aman?
                 </h3>
                 <p className="text-muted-foreground">
-                  Yes. Your data is only used for donation verification purposes.
+                  Ya. Data Anda hanya digunakan untuk tujuan verifikasi donasi.
                 </p>
               </div>
 
               <div className="border-b border-primary/20 pb-6">
                 <h3 className="font-bold mb-2 text-primary">
-                  Can I donate multiple times?
+                  Bisakah saya berdonasi beberapa kali?
                 </h3>
                 <p className="text-muted-foreground">
-                  Absolutely! Each donation will be recorded and verified separately.
+                  Tentu saja! Setiap donasi akan dicatat dan diverifikasi secara terpisah.
                 </p>
               </div>
 
               <div className="border-b border-primary/20 pb-6">
                 <h3 className="font-bold mb-2 text-primary">
-                  What is an anonymous donation?
+                  Apa itu Donasi Anonim?
                 </h3>
                 <p className="text-muted-foreground">
-                  If you check the anonymous option on the form, your name and Discord username are not shown on the public transparency page. Admins can still see what they need to verify your transfer.
+                  Jika Anda memilih opsi <b>Donasi Anonim</b> pada formulir, nama dan username Discord Anda tidak akan ditampilkan di halaman transparansi publik. Admin masih dapat melihat informasi yang mereka butuhkan untuk memverifikasi transfer Anda.
                 </p>
               </div>
             </div>
@@ -232,11 +208,11 @@ export default function Guide() {
               Siap Berbagi dan Membuat <span className="text-primary">Perbedaan</span>?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 text-balance">
-              Bergabunglah dengan kami dalam menciptakan dampak nyata through Devilish Charity.
+              Bergabunglah dengan kami dalam menciptakan dampak nyata melalui Devilish Charity.
             </p>
             <Link href="/donate">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg">
-                Donate Now
+                Donasi Sekarang
               </Button>
             </Link>
           </div>

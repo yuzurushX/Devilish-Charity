@@ -69,7 +69,7 @@ export default function Transparansi() {
               Transparansi <span className="text-primary">Donasi</span>
             </h1>
             <p className="text-lg md:text-xl max-w-2xl mx-auto text-muted-foreground leading-relaxed text-balance">
-              Transparansi penuh for every verified donation supporting meaningful causes with Devilish Charity.
+              Transparansi penuh untuk setiap donasi yang terverifikasi dan mendukung tujuan sosial dengan Devilish Charity.
             </p>
           </div>
         </div>
@@ -90,7 +90,7 @@ export default function Transparansi() {
 
             <Card className="p-6 text-center bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40 transition-colors">
               <Users className="w-8 h-8 mx-auto mb-4 text-primary" />
-              <p className="text-sm mb-2 text-muted-foreground">Jumlah Pendonasi</p>
+              <p className="text-sm mb-2 text-muted-foreground">Jumlah Donatur</p>
               <p className="text-3xl font-bold text-foreground">
                 {totalDonors}
               </p>
@@ -113,10 +113,10 @@ export default function Transparansi() {
         ) : donations.length === 0 ? (
           <Card className="p-12 text-center bg-card/50 backdrop-blur-sm border border-primary/20">
             <p className="text-lg text-foreground">
-              Belum ada donasi yang disetujui yet.
+              Belum ada donasi yang diverifikasi.
             </p>
             <p className="text-muted-foreground mt-2">
-              Jadilah yang pertama membuat perbedaan with Devilish Charity.
+              Jadilah yang pertama membuat perbedaan melalui Devilish Charity.
             </p>
           </Card>
         ) : (
@@ -157,7 +157,7 @@ export default function Transparansi() {
 
                 <div className="mt-4 flex items-center gap-2 text-sm">
                   <span className="inline-block w-2 h-2 rounded-full bg-primary" />
-                  <span className="text-primary font-medium">Verified Donation</span>
+                  <span className="text-primary font-medium">Donasi Terverifikasi</span>
                 </div>
               </Card>
             ))}
