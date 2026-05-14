@@ -20,6 +20,7 @@ interface Donation {
   created_at: string
   action_by: string | null
   action_at: string | null
+  is_anonymous?: boolean
 }
 
 interface AdminUser {
