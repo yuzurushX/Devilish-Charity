@@ -4,74 +4,43 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #0D0A0B;
-  --foreground: #F3F0EC;
-  --card: #1A1517;
-  --card-foreground: #F3F0EC;
-  --popover: #1A1517;
-  --popover-foreground: #F3F0EC;
-  --primary: #6E0F1F;
-  --primary-foreground: #F3F0EC;
-  --secondary: #9E1228;
-  --secondary-foreground: #F3F0EC;
-  --muted: #D88A1C;
-  --muted-foreground: #0D0A0B;
-  --accent: #FF5A1F;
-  --accent-foreground: #F3F0EC;
-  --destructive: #FF5A1F;
-  --destructive-foreground: #F3F0EC;
-  --border: #2A2527;
-  --input: #1A1517;
-  --ring: #FF5A1F;
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
-}
+  --background: oklch(0.12 0.01 30);
+  --foreground: oklch(0.95 0.01 60);
+  --card: oklch(0.15 0.01 30);
+  --card-foreground: oklch(0.95 0.01 60);
+  --popover: oklch(0.15 0.01 30);
+  --popover-foreground: oklch(0.95 0.01 60);
+  --primary: oklch(0.55 0.2 25);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.2 0.02 30);
+  --secondary-foreground: oklch(0.9 0.01 60);
+  --muted: oklch(0.2 0.02 30);
+  --muted-foreground: oklch(0.65 0.02 60);
+  --accent: oklch(0.6 0.18 45);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.5 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.25 0.02 30);
+  --input: oklch(0.2 0.02 30);
+  --ring: oklch(0.55 0.2 25);
+  --chart-1: oklch(0.55 0.2 25);
+  --chart-2: oklch(0.6 0.18 45);
+  --chart-3: oklch(0.5 0.15 15);
+  --chart-4: oklch(0.65 0.12 60);
+  --chart-5: oklch(0.45 0.18 30);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.1 0.01 30);
+  --sidebar-foreground: oklch(0.95 0.01 60);
+  --sidebar-primary: oklch(0.55 0.2 25);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.2 0.02 30);
+  --sidebar-accent-foreground: oklch(0.95 0.01 60);
+  --sidebar-border: oklch(0.25 0.02 30);
+  --sidebar-ring: oklch(0.55 0.2 25);
 
-.dark {
-  --background: #0D0A0B;
-  --foreground: #F3F0EC;
-  --card: #1A1517;
-  --card-foreground: #F3F0EC;
-  --popover: #1A1517;
-  --popover-foreground: #F3F0EC;
-  --primary: #6E0F1F;
-  --primary-foreground: #F3F0EC;
-  --secondary: #9E1228;
-  --secondary-foreground: #F3F0EC;
-  --muted: #D88A1C;
-  --muted-foreground: #0D0A0B;
-  --accent: #FF5A1F;
-  --accent-foreground: #F3F0EC;
-  --destructive: #FF5A1F;
-  --destructive-foreground: #F3F0EC;
-  --border: #2A2527;
-  --input: #1A1517;
-  --ring: #FF5A1F;
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  /* Custom charity colors */
+  --glow: oklch(0.55 0.2 25 / 0.3);
+  --glow-accent: oklch(0.6 0.18 45 / 0.3);
 }
 
 @theme inline {
@@ -113,6 +82,8 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-glow: var(--glow);
+  --color-glow-accent: var(--glow-accent);
 }
 
 @layer base {
@@ -122,4 +93,40 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Custom glow effects */
+.glow-primary {
+  box-shadow: 0 0 40px var(--glow), 0 0 80px var(--glow);
+}
+
+.glow-accent {
+  box-shadow: 0 0 40px var(--glow-accent), 0 0 80px var(--glow-accent);
+}
+
+.glow-text {
+  text-shadow: 0 0 20px var(--glow), 0 0 40px var(--glow);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
 }

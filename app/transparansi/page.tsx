@@ -6,7 +6,8 @@ import { Heart } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { TrendingUp, Users, DollarSign } from 'lucide-react'
 import { Card } from '@/components/ui/card'
-import { MobileNav } from '@/components/mobile-nav'
+import { Navigation } from '@/components/navigation'
+import { Footer } from '@/components/footer'
 import type { Donation } from '@/lib/donation-types'
 
 export default function Transparansi() {
@@ -55,38 +56,42 @@ export default function Transparansi() {
     })
 
   return (
-    <div style={{ backgroundColor: '#0D0A0B' }} className="min-h-screen">
-      {/* Navigation */}
-      <MobileNav />
+    <div className="min-h-screen bg-background pt-16">
+      <Navigation />
 
       {/* Hero */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={{ color: '#FF5A1F' }}>
-            Transparansi Donasi
-          </h1>
-          <p className="text-xl max-w-2xl mx-auto" style={{ color: '#F3F0EC' }}>
-            Transparansi penuh for every verified donation supporting meaningful causes with Devilish Charity.
-          </p>
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden py-12">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-foreground">
+              Transparansi <span className="text-primary">Donasi</span>
+            </h1>
+            <p className="text-lg md:text-xl max-w-2xl mx-auto text-muted-foreground leading-relaxed text-balance">
+              Transparansi penuh for every verified donation supporting meaningful causes with Devilish Charity.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Stats */}
-      <section className="py-12" style={{ backgroundColor: '#6E0F1F', borderColor: '#2A2527', borderTopWidth: '1px', borderBottomWidth: '1px' }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="p-6 text-center" style={{ backgroundColor: '#1A1517' }}>
-              <DollarSign className="w-8 h-8 mx-auto mb-4" style={{ color: '#D88A1C' }} />
-              <p className="text-sm mb-2" style={{ color: '#F3F0EC' }}>Total Donasi Terkumpul</p>
-              <p className="text-3xl font-bold" style={{ color: '#FF5A1F' }}>
+      <section className="py-16 relative overflow-hidden border-t border-primary/20">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <Card className="p-6 text-center bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40 transition-colors">
+              <DollarSign className="w-8 h-8 mx-auto mb-4 text-primary" />
+              <p className="text-sm mb-2 text-muted-foreground">Total Donasi Terkumpul</p>
+              <p className="text-3xl font-bold text-foreground">
                 {formatCurrency(totalAmount)}
               </p>
             </Card>
 
-            <Card className="p-6 text-center" style={{ backgroundColor: '#1A1517' }}>
-              <Users className="w-8 h-8 mx-auto mb-4" style={{ color: '#D88A1C' }} />
-              <p className="text-sm mb-2" style={{ color: '#F3F0EC' }}>Jumlah Pendonasi</p>
-              <p className="text-3xl font-bold" style={{ color: '#FF5A1F' }}>
+            <Card className="p-6 text-center bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40 transition-colors">
+              <Users className="w-8 h-8 mx-auto mb-4 text-primary" />
+              <p className="text-sm mb-2 text-muted-foreground">Jumlah Pendonasi</p>
+              <p className="text-3xl font-bold text-foreground">
                 {totalDonors}
               </p>
             </Card>
@@ -96,67 +101,63 @@ export default function Transparansi() {
       </section>
 
       {/* List Donations */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h2 className="text-3xl font-bold mb-8" style={{ color: '#FF5A1F' }}>
-          Daftar Donasi Terverifikasi
+      <section className="container mx-auto px-4 py-16">
+        <h2 className="text-3xl font-bold mb-12 text-foreground">
+          Daftar Donasi <span className="text-primary">Terverifikasi</span>
         </h2>
 
         {loading ? (
-          <div className="text-center py-12" style={{ color: '#F3F0EC' }}>
+          <div className="text-center py-12 text-muted-foreground">
             Memuat data donasi...
           </div>
         ) : donations.length === 0 ? (
-          <Card className="p-12 text-center" style={{ backgroundColor: '#1A1517' }}>
-            <p className="text-lg" style={{ color: '#F3F0EC' }}>
+          <Card className="p-12 text-center bg-card/50 backdrop-blur-sm border border-primary/20">
+            <p className="text-lg text-foreground">
               Belum ada donasi yang disetujui yet.
             </p>
-            <p className="text-slate-400 mt-2">
+            <p className="text-muted-foreground mt-2">
               Jadilah yang pertama membuat perbedaan with Devilish Charity.
             </p>
           </Card>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
             {donations.map((donation) => (
               <Card
                 key={donation.id}
-                className="p-6 hover:shadow-lg transition-shadow"
-                style={{ backgroundColor: '#1A1517', borderLeftColor: '#FF5A1F', borderLeftWidth: '4px' }}
+                className="p-6 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div>
                     <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-lg font-bold" style={{ color: '#FF5A1F' }}>
+                      <h3 className="text-lg font-bold text-primary">
                         {donation.name}
                       </h3>
                       {donation.is_anonymous ? (
-                        <span
-                          className="px-2 py-0.5 rounded text-xs font-semibold"
-                          style={{ backgroundColor: '#3D1F1F', color: '#FF5A1F' }}
-                        >
+                        <span className="px-2 py-0.5 rounded text-xs font-semibold bg-primary/20 text-primary">
                           Anonim
                         </span>
                       ) : null}
                     </div>
-                    <p className="text-sm" style={{ color: '#F3F0EC' }}>
+                    <p className="text-sm text-muted-foreground">
                       {formatDate(donation.created_at)}
                     </p>
                   </div>
-                  <p className="text-2xl font-bold" style={{ color: '#FF5A1F' }}>
+                  <p className="text-2xl font-bold text-foreground">
                     {formatCurrency(donation.amount)}
                   </p>
                 </div>
 
                 {donation.message && (
-                  <div className="mt-4 p-4 rounded-lg border-l-2" style={{ backgroundColor: '#0D0A0B', borderLeftColor: '#FF5A1F' }}>
-                    <p className="text-sm italic" style={{ color: '#F3F0EC' }}>
+                  <div className="mt-4 p-4 rounded-lg border-l-2 bg-primary/5 border-primary/20">
+                    <p className="text-sm italic text-foreground">
                       &quot;{donation.message}&quot;
                     </p>
                   </div>
                 )}
 
                 <div className="mt-4 flex items-center gap-2 text-sm">
-                  <span className="inline-block w-2 h-2 rounded-full" style={{ backgroundColor: '#FF5A1F' }} />
-                  <span style={{ color: '#FF5A1F' }}>Verified Donation</span>
+                  <span className="inline-block w-2 h-2 rounded-full bg-primary" />
+                  <span className="text-primary font-medium">Verified Donation</span>
                 </div>
               </Card>
             ))}
@@ -164,52 +165,7 @@ export default function Transparansi() {
         )}
       </section>
 
-      {/* Footer */}
-      <footer className="py-8" style={{ backgroundColor: '#1A1517' }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <h4 className="font-bold mb-4" style={{ color: '#FF5A1F' }}>About Us</h4>
-              <p className="text-sm" style={{ color: '#F3F0EC' }}>
-                Devilish Charity is a community-driven initiative dedicated to creating real impact through transparent and trusted giving.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-4" style={{ color: '#FF5A1F' }}>Navigation</h4>
-              <div className="space-y-2 text-sm">
-                <Link href="/guide" className="transition" style={{ color: '#F3F0EC' }}>
-                  Donation Guide
-                </Link>
-                <br />
-                <Link href="/transparansi" className="transition" style={{ color: '#F3F0EC' }}>
-                  Transparency Report
-                </Link>
-                <br />
-                <Link href="/donate" className="transition" style={{ color: '#F3F0EC' }}>
-                  Donation Form
-                </Link>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-4" style={{ color: '#FF5A1F' }}>Contact</h4>
-              <p className="text-sm" style={{ color: '#F3F0EC' }}>
-                Email: <span style={{ color: '#FF5A1F' }}>devilishcommunity@gmail.com</span>
-              </p>
-              <p className="text-sm" style={{ color: '#F3F0EC' }}>
-                Active support for community impact
-              </p>
-            </div>
-          </div>
-
-          <div className="border-t pt-8 text-center text-sm" style={{ borderColor: '#2A2527', color: '#F3F0EC' }}>
-            <p>
-              &copy; 2026 Devilish Charity. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

@@ -10,7 +10,8 @@ import { CheckCircle, AlertCircle, Upload, DollarSign, User, MessageSquare } fro
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { MobileNav } from '@/components/mobile-nav'
+import { Navigation } from '@/components/navigation'
+import { Footer } from '@/components/footer'
 
 export default function Donate() {
   const [formData, setFormData] = useState({
@@ -174,33 +175,44 @@ export default function Donate() {
   }
 
   return (
-    <div style={{ backgroundColor: '#0D0A0B' }} className="min-h-screen">
-      {/* Navigation */}
-      <MobileNav />
+    <div className="min-h-screen bg-background pt-16">
+      <Navigation />
+
+      {/* Hero Section */}
+      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden py-12">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-foreground">
+              Form <span className="text-primary">Donasi</span>
+            </h1>
+            <p className="text-lg md:text-xl max-w-2xl mx-auto text-muted-foreground leading-relaxed text-balance">
+              Silakan isi form ini setelah melakukan transfer donasi. Setiap donasi akan diverifikasi secara manual oleh tim admin kami.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Content */}
-      <div className="max-w-2xl mx-auto py-12 px-4">
-        <h1 className="text-4xl font-bold mb-3" style={{ color: '#FF5A1F' }}>Form Konfirmasi Donasi</h1>
-        <p className="mb-8" style={{ color: '#F3F0EC' }}>
-          Silakan isi form ini setelah melakukan transfer donasi. Setiap donasi akan diverifikasi secara manual oleh tim admin kami.
-        </p>
+      <div className="container mx-auto max-w-2xl py-12 px-4">
 
         {successMessage && (
-          <Card className="p-4 mb-6 flex gap-3" style={{ backgroundColor: '#1A2723', borderColor: '#6E0F1F', borderWidth: '1px' }}>
-            <CheckCircle style={{ color: '#FF5A1F' }} />
-            <p className="text-sm" style={{ color: '#FF5A1F' }}>{successMessage}</p>
+          <Card className="p-4 mb-6 flex gap-3 bg-card/50 backdrop-blur-sm border border-primary/20">
+            <CheckCircle className="text-primary" />
+            <p className="text-sm text-primary">{successMessage}</p>
           </Card>
         )}
 
         {errorMessage && (
-          <Card className="p-4 mb-6 flex gap-3" style={{ backgroundColor: '#3D1F1F', borderColor: '#FF5A1F', borderWidth: '1px' }}>
-            <AlertCircle style={{ color: '#FF5A1F' }} />
-            <p className="text-sm" style={{ color: '#FF5A1F' }}>{errorMessage}</p>
+          <Card className="p-4 mb-6 flex gap-3 bg-card/50 backdrop-blur-sm border border-destructive/30">
+            <AlertCircle className="text-destructive" />
+            <p className="text-sm text-destructive">{errorMessage}</p>
           </Card>
         )}
 
         {/* Bank Information Card */}
-        <Card className="p-8 mb-8 hover:shadow-lg transition-shadow" style={{ backgroundColor: '#1A1517', borderColor: '#2A2527' }}>
+        <Card className="p-8 mb-8 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40">
           <div className="flex gap-6">
             <div className="flex items-center justify-center h-20 w-32 rounded-md flex-shrink-0">
               <Image 
@@ -212,20 +224,20 @@ export default function Donate() {
               />
             </div>
             <div className="flex-1">
-              <h3 className="text-2xl font-bold mb-4" style={{ color: '#FF5A1F' }}>
+              <h3 className="text-2xl font-bold mb-4 text-primary">
                 Informasi Rekening Bank
               </h3>
-              <div className="space-y-3" style={{ color: '#F3F0EC' }}>
+              <div className="space-y-3 text-foreground">
                 <div>
-                  <p className="text-sm" style={{ color: '#D88A1C' }}>Bank</p>
+                  <p className="text-sm text-muted-foreground">Bank</p>
                   <p className="font-semibold">SMBC (Sumitomo Mitsui Banking Corporation)</p>
                 </div>
                 <div>
-                  <p className="text-sm" style={{ color: '#D88A1C' }}>Nomor Rekening</p>
+                  <p className="text-sm text-muted-foreground">Nomor Rekening</p>
                   <p className="font-semibold font-mono text-lg">90012331247</p>
                 </div>
                 <div>
-                  <p className="text-sm" style={{ color: '#D88A1C' }}>Atas Nama (a.n.)</p>
+                  <p className="text-sm text-muted-foreground">Atas Nama (a.n.)</p>
                   <p className="font-semibold">Ahmad Fadillah Ruswansyah</p>
                 </div>
               </div>
@@ -233,22 +245,22 @@ export default function Donate() {
           </div>
         </Card>
 
-        <Card className="p-8 shadow-lg" style={{ backgroundColor: '#1A1517' }}>
+        <Card className="p-8 shadow-lg bg-card/50 backdrop-blur-sm border border-primary/20">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Anonymous Donation Checkbox */}
             <div className="space-y-2">
-              <label className="flex items-center gap-3 cursor-pointer" style={{ color: '#F3F0EC' }}>
+              <label className="flex items-center gap-3 cursor-pointer text-foreground">
                 <input
                   type="checkbox"
                   name="isAnonymous"
                   checked={formData.isAnonymous}
                   onChange={handleInputChange}
                   className="w-4 h-4 rounded"
-                  style={{ accentColor: '#FF5A1F' }}
+                  style={{ accentColor: 'var(--accent)' }}
                 />
                 <span className="text-sm font-semibold">Donasi Anonim (Nama tidak akan ditampilkan)</span>
               </label>
-              <p className="text-xs" style={{ color: '#D88A1C' }}>
+              <p className="text-xs text-muted-foreground">
                 ✓ Centang untuk mendonasi secara anonim tanpa menampilkan identitas Anda
               </p>
             </div>
@@ -256,17 +268,17 @@ export default function Donate() {
             {/* Nama */}
             {!formData.isAnonymous && (
               <div className="space-y-2">
-                <label className="block text-sm font-semibold flex items-center gap-2" style={{ color: '#FF5A1F' }}>
-                  <User className="w-4 h-4" style={{ color: '#D88A1C' }} />
-                  Nama Lengkap <span style={{ color: '#FF5A1F' }}>*</span>
+                <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
+                  <User className="w-4 h-4 text-muted-foreground" />
+                  Nama Lengkap <span className="text-primary">*</span>
                 </label>
                 <Input
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
                   placeholder="Masukkan nama Anda"
-                  className="border-slate-300 focus:ring-2 focus:ring-offset-0"
-                  style={{ backgroundColor: '#0D0A0B', color: '#F3F0EC', borderColor: '#2A2527', '--tw-ring-color': '#FF5A1F' } as any}
+                  className="bg-background text-foreground border-border focus:ring-2 focus:ring-offset-0"
+                  style={{ '--tw-ring-color': 'var(--accent)' } as any}
                 />
               </div>
             )}
@@ -274,45 +286,45 @@ export default function Donate() {
             {/* Username Discord */}
             {!formData.isAnonymous && (
               <div className="space-y-2">
-                <label className="block text-sm font-semibold" style={{ color: '#FF5A1F' }}>
-                  Username Discord <span className="font-normal" style={{ color: '#F3F0EC' }}>(opsional)</span>
+                <label className="block text-sm font-semibold text-primary">
+                  Username Discord <span className="font-normal text-foreground">(opsional)</span>
                 </label>
                 <Input
                   name="discordUsername"
                   value={formData.discordUsername}
                   onChange={handleInputChange}
                   placeholder="Nama Discord Anda"
-                  className="border-slate-300 focus:ring-2 focus:ring-offset-0"
-                  style={{ backgroundColor: '#0D0A0B', color: '#F3F0EC', borderColor: '#2A2527', '--tw-ring-color': '#FF5A1F' } as any}
+                  className="bg-background text-foreground border-border focus:ring-2 focus:ring-offset-0"
+                  style={{ '--tw-ring-color': 'var(--accent)' } as any}
                 />
               </div>
             )}
 
             {/* Nominal Donasi */}
             <div className="space-y-2">
-              <label className="block text-sm font-semibold flex items-center gap-2" style={{ color: '#FF5A1F' }}>
-                <DollarSign className="w-4 h-4" style={{ color: '#D88A1C' }} />
-                Nominal Donasi <span style={{ color: '#FF5A1F' }}>*</span>
+              <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
+                <DollarSign className="w-4 h-4 text-muted-foreground" />
+                Nominal Donasi <span className="text-primary">*</span>
               </label>
               <div className="flex items-center gap-2">
-                <span style={{ color: '#F3F0EC' }}>Rp</span>
+                <span className="text-foreground">Rp</span>
                 <Input
                   name="amount"
                   type="number"
                   value={formData.amount}
                   onChange={handleInputChange}
                   placeholder="Contoh: 50000"
-                  className="border-slate-300 focus:ring-2 focus:ring-offset-0"
-                  style={{ backgroundColor: '#0D0A0B', color: '#F3F0EC', borderColor: '#2A2527', '--tw-ring-color': '#FF5A1F' } as any}
+                  className="bg-background text-foreground border-border focus:ring-2 focus:ring-offset-0"
+                  style={{ '--tw-ring-color': 'var(--accent)' } as any}
                 />
               </div>
             </div>
 
             {/* Pesan */}
             <div className="space-y-2">
-              <label className="block text-sm font-semibold flex items-center gap-2" style={{ color: '#FF5A1F' }}>
-                <MessageSquare className="w-4 h-4" style={{ color: '#D88A1C' }} />
-                Pesan/Doa <span className="font-normal" style={{ color: '#F3F0EC' }}>(opsional)</span>
+              <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
+                <MessageSquare className="w-4 h-4 text-muted-foreground" />
+                Pesan/Doa <span className="font-normal text-foreground">(opsional)</span>
               </label>
               <textarea
                 name="message"
@@ -320,28 +332,27 @@ export default function Donate() {
                 onChange={handleInputChange}
                 placeholder="Tulis pesan, doa, atau harapan Anda..."
                 rows={3}
-                className="w-full border border-slate-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-0"
-                style={{ backgroundColor: '#0D0A0B', color: '#F3F0EC', borderColor: '#2A2527', '--tw-ring-color': '#FF5A1F' } as any}
+                className="w-full bg-background text-foreground border border-border rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-offset-0"
+                style={{ '--tw-ring-color': 'var(--accent)' } as any}
               />
             </div>
 
             {/* Bukti Transfer */}
             <div className="space-y-2">
-              <label className="block text-sm font-semibold flex items-center gap-2" style={{ color: '#FF5A1F' }}>
-                <Upload className="w-4 h-4" style={{ color: '#D88A1C' }} />
-                Bukti Transfer <span style={{ color: '#FF5A1F' }}>*</span>
+              <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
+                <Upload className="w-4 h-4 text-muted-foreground" />
+                Bukti Transfer <span className="text-primary">*</span>
               </label>
               <div 
                 onDragOver={handleDragOver}
                 onDrop={handleDrop}
-                className="border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition"
-                style={{ borderColor: '#2A2527' }}
+                className="border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition border-primary/30 hover:border-primary/50 hover:bg-primary/5"
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#FF5A1F';
-                  e.currentTarget.style.backgroundColor = '#1A1517';
+                  e.currentTarget.style.borderColor = 'var(--primary)';
+                  e.currentTarget.style.backgroundColor = 'rgb(255 255 255 / 0.02)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#2A2527';
+                  e.currentTarget.style.borderColor = 'var(--primary) / 0.3';
                   e.currentTarget.style.backgroundColor = 'transparent';
                 }}
               >
@@ -355,17 +366,17 @@ export default function Donate() {
                 <label htmlFor="fileInput" className="cursor-pointer block">
                   {filePreview ? (
                     <div className="space-y-3">
-                      <img src={filePreview || "/placeholder.svg"} alt="Preview" className="w-24 h-24 mx-auto rounded-lg object-cover" style={{ borderColor: '#FF5A1F', borderWidth: '2px' }} />
+                      <img src={filePreview || "/placeholder.svg"} alt="Preview" className="w-24 h-24 mx-auto rounded-lg object-cover border-2 border-primary/40" />
                       <div>
-                        <p className="text-sm font-medium" style={{ color: '#FF5A1F' }}>{file?.name}</p>
-                        <p className="text-xs" style={{ color: '#F3F0EC' }}>{(file?.size || 0) / 1024} KB</p>
+                        <p className="text-sm font-medium text-primary">{file?.name}</p>
+                        <p className="text-xs text-muted-foreground">{(file?.size || 0) / 1024} KB</p>
                       </div>
                     </div>
                   )                   : (
                     <>
-                      <Upload className="w-8 h-8 mx-auto mb-2" style={{ color: '#FF5A1F' }} />
-                      <p className="text-sm font-medium" style={{ color: '#FF5A1F' }}>Klik untuk upload atau drag & drop</p>
-                      <p className="text-xs mt-1" style={{ color: '#F3F0EC' }}>JPG, PNG, atau PDF (Maks 5MB)</p>
+                      <Upload className="w-8 h-8 mx-auto mb-2 text-primary/60" />
+                      <p className="text-sm font-medium text-foreground">Klik untuk upload atau drag & drop</p>
+                      <p className="text-xs mt-1 text-muted-foreground">JPG, PNG, atau PDF (Maks 5MB)</p>
                     </>
                   )}
                 </label>
@@ -377,8 +388,7 @@ export default function Donate() {
                     setFile(null)
                     setFilePreview('')
                   }}
-                  className="text-sm font-medium"
-                  style={{ color: '#FF5A1F' }}
+                  className="text-sm font-medium text-primary hover:text-primary/80"
                 >
                   ✕ Ganti file
                 </button>
@@ -388,20 +398,20 @@ export default function Donate() {
             {/* Progress Bar */}
             {uploadProgress > 0 && (
               <div className="space-y-2">
-                <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+                <div className="h-2 bg-border rounded-full overflow-hidden">
                   <div
-                    className="h-2 bg-gradient-to-r from-red-600 to-red-500 rounded-full transition-all duration-300"
+                    className="h-2 bg-primary rounded-full transition-all duration-300"
                     style={{ width: `${uploadProgress}%` }}
                   />
                 </div>
-                <p className="text-xs text-slate-600 text-center">{uploadProgress}%</p>
+                <p className="text-xs text-muted-foreground text-center">{uploadProgress}%</p>
               </div>
             )}
 
             {/* Submit Button */}
             <Button 
               disabled={isLoading} 
-              className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg transition " style={{ backgroundColor: '#FF5A1F', color: '#F3F0EC' }}
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 rounded-lg transition"
             >
               {isLoading ? (
                 <div className="flex items-center gap-2">
@@ -416,52 +426,7 @@ export default function Donate() {
         </Card>
       </div>
 
-      {/* Footer */}
-      <footer className="py-8" style={{ backgroundColor: '#1A1517' }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <h4 className="font-bold mb-4" style={{ color: '#FF5A1F' }}>Tentang Kami</h4>
-              <p className="text-sm" style={{ color: '#F3F0EC' }}>
-                Devilish Charity adalah inisiatif yang didorong komunitas untuk menciptakan dampak nyata melalui berbagi yang transparan dan terpercaya. Bersama, kami memberdayakan komunitas dan mendukung mereka yang membutuhkan.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-4" style={{ color: '#FF5A1F' }}>Navigasi</h4>
-              <div className="space-y-2 text-sm">
-                <Link href="/guide" className="transition" style={{ color: '#F3F0EC' }}>
-                  Panduan Donasi
-                </Link>
-                <br />
-                <Link href="/transparansi" className="transition" style={{ color: '#F3F0EC' }}>
-                  Transparansi Donasi
-                </Link>
-                <br />
-                <Link href="/donate" className="transition" style={{ color: '#F3F0EC' }}>
-                  Form Donasi
-                </Link>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-4" style={{ color: '#FF5A1F' }}>Kontak</h4>
-              <p className="text-sm" style={{ color: '#F3F0EC' }}>
-                Email: <span style={{ color: '#FF5A1F' }}>devilishcommunity@gmail.com</span>
-              </p>
-              <p className="text-sm" style={{ color: '#F3F0EC' }}>
-                Dukungan aktif untuk dampak komunitas
-              </p>
-            </div>
-          </div>
-
-          <div className="border-t pt-8 text-center text-sm" style={{ borderColor: '#2A2527', color: '#F3F0EC' }}>
-            <p>
-              &copy; 2026 Devilish Charity. Semua hak dilindungi.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

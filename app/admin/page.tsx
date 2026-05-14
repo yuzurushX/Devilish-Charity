@@ -1,7 +1,6 @@
 'use client'
 
 import Link from "next/link"
-import { Heart } from 'lucide-react'
 import React from "react"
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -9,8 +8,7 @@ import { LogIn, AlertCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { MobileNav } from '@/components/mobile-nav'
-
+import { Footer } from '@/components/footer'
 export default function AdminLogin() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -117,38 +115,41 @@ export default function AdminLogin() {
   }
 
   return (
-    <div style={{ backgroundColor: '#0D0A0B' }} className="min-h-screen flex flex-col">
-      {/* Navigation */}
-      <MobileNav />
+    <div className="min-h-screen flex flex-col bg-background">
+      <div className="flex justify-end px-4 pt-4">
+        <Link href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+          ← Beranda
+        </Link>
+      </div>
 
       {/* Login Container */}
       <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
         {setupRequired === null ? (
-          <Card className="w-full max-w-md p-8" style={{ backgroundColor: '#1A1517' }}>
+          <Card className="w-full max-w-md p-8 bg-card border-border">
             <div className="text-center">
-              <p style={{ color: '#F3F0EC' }}>Memuat...</p>
+              <p className="text-foreground">Memuat...</p>
             </div>
           </Card>
         ) : setupRequired ? (
-          <Card className="w-full max-w-md p-8" style={{ backgroundColor: '#1A1517' }}>
+          <Card className="w-full max-w-md p-8 bg-card border-border">
             <div className="text-center mb-8">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#FF5A1F' }}>
-                <LogIn className="w-8 h-8" style={{ color: '#F3F0EC' }} />
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-primary">
+                <LogIn className="w-8 h-8 text-primary-foreground" />
               </div>
-              <h1 className="text-3xl font-bold mb-2" style={{ color: '#FF5A1F' }}>Setup Admin Pertama</h1>
-              <p style={{ color: '#F3F0EC' }}>Buat akun Master Admin untuk mengelola platform</p>
+              <h1 className="text-3xl font-bold mb-2 text-primary">Setup Admin Pertama</h1>
+              <p className="text-foreground">Buat akun Master Admin untuk mengelola platform</p>
             </div>
 
             {error && (
-              <div className="rounded-lg p-4 mb-6 flex gap-3" style={{ backgroundColor: '#3D1F1F', borderColor: '#FF5A1F', borderWidth: '1px' }}>
-                <AlertCircle className="w-5 h-5 flex-shrink-0" style={{ color: '#FF5A1F' }} />
-                <p className="text-sm" style={{ color: '#FF5A1F' }}>{error}</p>
+              <div className="rounded-lg p-4 mb-6 flex gap-3 bg-destructive/10 border border-destructive/30">
+                <AlertCircle className="w-5 h-5 flex-shrink-0 text-destructive" />
+                <p className="text-sm text-destructive">{error}</p>
               </div>
             )}
 
             <form onSubmit={handleSetupSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-semibold mb-2" style={{ color: '#FF5A1F' }}>
+                <label className="block text-sm font-semibold mb-2 text-primary">
                   Nama Pengguna
                 </label>
                 <Input
@@ -158,14 +159,13 @@ export default function AdminLogin() {
                   placeholder="Masukkan nama pengguna"
                   required
                   minLength={3}
-                  className="w-full"
+                  className="w-full bg-background border-border text-foreground"
                   disabled={isCreating}
-                  style={{ backgroundColor: '#0D0A0B', color: '#F3F0EC', borderColor: '#2A2527' }}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold mb-2" style={{ color: '#FF5A1F' }}>
+                <label className="block text-sm font-semibold mb-2 text-primary">
                   Password
                 </label>
                 <Input
@@ -175,48 +175,46 @@ export default function AdminLogin() {
                   placeholder="Minimal 8 karakter"
                   required
                   minLength={8}
-                  className="w-full"
+                  className="w-full bg-background border-border text-foreground"
                   disabled={isCreating}
-                  style={{ backgroundColor: '#0D0A0B', color: '#F3F0EC', borderColor: '#2A2527' }}
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={isCreating}
-                className="w-full text-white font-semibold py-3 rounded-lg transition-colors disabled:opacity-50"
-                style={{ backgroundColor: '#FF5A1F', color: '#F3F0EC' }}
+                className="w-full font-semibold py-3 bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
               >
                 {isCreating ? 'Membuat akun...' : 'Buat Master Admin'}
               </Button>
             </form>
 
-            <div className="mt-6 p-4 rounded-lg" style={{ backgroundColor: '#3D1F1F', borderColor: '#FF5A1F', borderWidth: '1px' }}>
-              <p className="text-xs" style={{ color: '#F3F0EC' }}>
-                <span className="font-semibold" style={{ color: '#FF5A1F' }}>Catatan:</span> Ini adalah admin pertama yang akan menjadi Master Admin dengan kemampuan membuat admin lainnya. Simpan kredensial Anda dengan aman.
+            <div className="mt-6 p-4 rounded-lg bg-primary/10 border border-primary/20">
+              <p className="text-xs text-muted-foreground">
+                <span className="font-semibold text-primary">Catatan:</span> Ini adalah admin pertama yang akan menjadi Master Admin dengan kemampuan membuat admin lainnya. Simpan kredensial Anda dengan aman.
               </p>
             </div>
           </Card>
         ) : (
-          <Card className="w-full max-w-md p-8" style={{ backgroundColor: '#1A1517' }}>
+          <Card className="w-full max-w-md p-8 bg-card border-border">
             <div className="text-center mb-8">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#FF5A1F' }}>
-                <LogIn className="w-8 h-8" style={{ color: '#F3F0EC' }} />
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-primary">
+                <LogIn className="w-8 h-8 text-primary-foreground" />
               </div>
-              <h1 className="text-3xl font-bold mb-2" style={{ color: '#FF5A1F' }}>Login Admin</h1>
-              <p style={{ color: '#F3F0EC' }}>Akses panel admin untuk mengelola donasi</p>
+              <h1 className="text-3xl font-bold mb-2 text-primary">Login Admin</h1>
+              <p className="text-foreground">Akses panel admin untuk mengelola donasi</p>
             </div>
 
             {error && (
-              <div className="rounded-lg p-4 mb-6 flex gap-3" style={{ backgroundColor: '#3D1F1F', borderColor: '#FF5A1F', borderWidth: '1px' }}>
-                <AlertCircle className="w-5 h-5 flex-shrink-0" style={{ color: '#FF5A1F' }} />
-                <p className="text-sm" style={{ color: '#FF5A1F' }}>{error}</p>
+              <div className="rounded-lg p-4 mb-6 flex gap-3 bg-destructive/10 border border-destructive/30">
+                <AlertCircle className="w-5 h-5 flex-shrink-0 text-destructive" />
+                <p className="text-sm text-destructive">{error}</p>
               </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-semibold mb-2" style={{ color: '#FF5A1F' }}>
+                <label className="block text-sm font-semibold mb-2 text-primary">
                   Nama Pengguna
                 </label>
                 <Input
@@ -225,14 +223,13 @@ export default function AdminLogin() {
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="Masukkan username Anda"
                   required
-                  className="w-full"
+                  className="w-full bg-background border-border text-foreground"
                   disabled={isLoading}
-                  style={{ backgroundColor: '#0D0A0B', color: '#F3F0EC', borderColor: '#2A2527' }}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold mb-2" style={{ color: '#FF5A1F' }}>
+                <label className="block text-sm font-semibold mb-2 text-primary">
                   Password
                 </label>
                 <Input
@@ -241,77 +238,30 @@ export default function AdminLogin() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Masukkan password Anda"
                   required
-                  className="w-full"
+                  className="w-full bg-background border-border text-foreground"
                   disabled={isLoading}
-                  style={{ backgroundColor: '#0D0A0B', color: '#F3F0EC', borderColor: '#2A2527' }}
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full text-white font-semibold py-3 rounded-lg transition-colors disabled:opacity-50"
-                style={{ backgroundColor: '#FF5A1F', color: '#F3F0EC' }}
+                className="w-full font-semibold py-3 bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
               >
                 {isLoading ? 'Login...' : 'Login ke Dashboard'}
               </Button>
             </form>
 
-            <div className="mt-6 p-4 rounded-lg" style={{ backgroundColor: '#3D1F1F', borderColor: '#FF5A1F', borderWidth: '1px' }}>
-              <p className="text-xs" style={{ color: '#F3F0EC' }}>
-                <span className="font-semibold" style={{ color: '#FF5A1F' }}>Akses Admin:</span> Hubungi administrator Anda untuk mendapatkan kredensial. Jangan bagikan password Anda dengan siapapun.
+            <div className="mt-6 p-4 rounded-lg bg-primary/10 border border-primary/20">
+              <p className="text-xs text-muted-foreground">
+                <span className="font-semibold text-primary">Akses Admin:</span> Hubungi administrator Anda untuk mendapatkan kredensial. Jangan bagikan password Anda dengan siapapun.
               </p>
             </div>
           </Card>
         )}
       </div>
 
-      {/* Footer */}
-      <footer className="py-8" style={{ backgroundColor: '#1A1517' }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <h4 className="font-bold mb-4" style={{ color: '#FF5A1F' }}>About Us</h4>
-              <p className="text-sm" style={{ color: '#F3F0EC' }}>
-                Devilish Charity is a community-driven initiative dedicated to creating real impact through transparent and trusted giving.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-4" style={{ color: '#FF5A1F' }}>Navigation</h4>
-              <div className="space-y-2 text-sm">
-                <Link href="/guide" className="transition" style={{ color: '#F3F0EC' }}>
-                  Donation Guide
-                </Link>
-                <br />
-                <Link href="/transparansi" className="transition" style={{ color: '#F3F0EC' }}>
-                  Transparency Report
-                </Link>
-                <br />
-                <Link href="/donate" className="transition" style={{ color: '#F3F0EC' }}>
-                  Donation Form
-                </Link>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-4" style={{ color: '#FF5A1F' }}>Contact</h4>
-              <p className="text-sm" style={{ color: '#F3F0EC' }}>
-                Email: <span style={{ color: '#FF5A1F' }}>devilishcommunity@gmail.com</span>
-              </p>
-              <p className="text-sm" style={{ color: '#F3F0EC' }}>
-                Active support for community impact
-              </p>
-            </div>
-          </div>
-
-          <div className="border-t pt-8 text-center text-sm" style={{ borderColor: '#2A2527', color: '#F3F0EC' }}>
-            <p>
-              &copy; 2026 Devilish Charity. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
