@@ -62,9 +62,9 @@ export default function Guide() {
                 <p className="mb-4 text-muted-foreground">
                   Masukkan jumlah donasi dan detail informasi Anda. Anda dapat menggunakan opsi <b>Donasi Anomim</b> untuk menyembunyikan nama dan Discord Anda dari daftar transparansi publik (admin tetap memverifikasi pembayaran Anda).
                 </p>
-              </div>
-              <div className="mt-4 p-4 rounded-lg text-sm bg-primary/5 text-foreground border border-primary/20">
-                💡 Dengan mengisi username Discord, anda akan diundang ke server Discord Devilish dan mendapatkan update kegiatan charity.
+                <div className="mt-4 p-4 rounded-lg text-sm bg-primary/5 text-foreground border border-primary/20">
+                  💡 Dengan mengisi username Discord, anda akan diundang ke server Discord Devilish dan mendapatkan update kegiatan charity.
+                </div>
               </div>
             </div>
           </Card>
