@@ -7,14 +7,7 @@ import { useEffect, useState } from 'react'
 import { TrendingUp, Users, DollarSign } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { MobileNav } from '@/components/mobile-nav'
-
-interface Donation {
-  id: string
-  name: string
-  amount: number
-  message: string | null
-  created_at: string
-}
+import type { Donation } from '@/lib/donation-types'
 
 export default function Transparansi() {
   const [donations, setDonations] = useState<Donation[]>([])
@@ -131,9 +124,19 @@ export default function Transparansi() {
               >
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="text-lg font-bold" style={{ color: '#FF5A1F' }}>
-                      {donation.name}
-                    </h3>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="text-lg font-bold" style={{ color: '#FF5A1F' }}>
+                        {donation.name}
+                      </h3>
+                      {donation.is_anonymous ? (
+                        <span
+                          className="px-2 py-0.5 rounded text-xs font-semibold"
+                          style={{ backgroundColor: '#3D1F1F', color: '#FF5A1F' }}
+                        >
+                          Anonim
+                        </span>
+                      ) : null}
+                    </div>
                     <p className="text-sm" style={{ color: '#F3F0EC' }}>
                       {formatDate(donation.created_at)}
                     </p>

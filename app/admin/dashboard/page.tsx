@@ -7,21 +7,7 @@ import Image from 'next/image'
 import { LogOut, CheckCircle, XCircle, Clock, ExternalLink } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-
-interface Donation {
-  id: string
-  name: string
-  discord_username: string | null
-  amount: number
-  payment_method: string
-  proof_url: string
-  message: string | null
-  status: 'pending' | 'approved' | 'rejected'
-  created_at: string
-  action_by: string | null
-  action_at: string | null
-  is_anonymous?: boolean
-}
+import type { Donation } from '@/lib/donation-types'
 
 interface AdminUser {
   id: string

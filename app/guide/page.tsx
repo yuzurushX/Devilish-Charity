@@ -60,10 +60,10 @@ export default function Guide() {
                   Isi Data Donasi
                 </h3>
                 <p className="mb-4" style={{ color: '#F3F0EC' }}>
-                  Enter your full name, donation amount, and Discord username (optional). You can also add a personal message or prayer.
+                  Enter your donation amount and payment details. Optionally add your name, Discord username, and a message. You can use the <b>anonymous donation</b> option to hide your name and Discord on the public transparency list (admins still verify your payment).
                 </p>
                 <div className="p-4 rounded-md text-sm" style={{ backgroundColor: '#2A2527', color: '#F3F0EC' }}>
-                  💡 Your Discord username helps us contact you if needed.
+                  💡 If you are not anonymous, your Discord username helps us contact you if needed.
                 </div>
               </div>
             </div>
@@ -200,6 +200,15 @@ export default function Guide() {
               </h3>
               <p style={{ color: '#F3F0EC' }}>
                 Absolutely! Each donation will be recorded and verified separately.
+              </p>
+            </div>
+
+            <div className="border-b pb-6" style={{ borderColor: '#2A2527' }}>
+              <h3 className="font-bold mb-2" style={{ color: '#FF5A1F' }}>
+                What is an anonymous donation?
+              </h3>
+              <p style={{ color: '#F3F0EC' }}>
+                If you check the anonymous option on the form, your name and Discord username are not shown on the public transparency page. Admins can still see what they need to verify your transfer.
               </p>
             </div>
           </div>
