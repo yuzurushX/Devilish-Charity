@@ -21,9 +21,6 @@ export function Footer() {
             <p className="text-muted-foreground leading-relaxed max-w-md">
               Kami adalah bagian dari komunitas Devilish yang percaya bahwa kebersamaan bukan hanya tentang bertumbuh bersama, tetapi juga memberi dampak nyata bagi sekitar.
               <br />
-              Melalui platform charity ini, kami mengajak lebih banyak orang untuk berbagi kebaikan, membantu mereka yang membutuhkan, dan menciptakan perubahan yang berarti. Setiap donasi akan dikelola secara transparan dan disalurkan untuk tujuan sosial yang bermanfaat.
-              <br />
-              Bagi kami, sekecil apa pun bantuan yang diberikan tetap memiliki arti besar bagi mereka yang membutuhkan.
             </p>
           </div>
 
