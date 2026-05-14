@@ -19,8 +19,11 @@ export function Footer() {
               />
             </Link>
             <p className="text-muted-foreground leading-relaxed max-w-md">
-              Inisiatif yang didorong komunitas untuk dampak nyata melalui berbagi yang transparan dan
-              terpercaya. Setiap donasi tercatat dan dilaporkan secara terbuka.
+              Kami adalah bagian dari komunitas Devilish yang percaya bahwa kebersamaan bukan hanya tentang bertumbuh bersama, tetapi juga memberi dampak nyata bagi sekitar.
+              <br>
+              Melalui platform charity ini, kami mengajak lebih banyak orang untuk berbagi kebaikan, membantu mereka yang membutuhkan, dan menciptakan perubahan yang berarti. Setiap donasi akan dikelola secara transparan dan disalurkan untuk tujuan sosial yang bermanfaat.
+              <br>
+              Bagi kami, sekecil apa pun bantuan yang diberikan tetap memiliki arti besar bagi mereka yang membutuhkan.
             </p>
           </div>
 
@@ -68,7 +71,7 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Devilish Charity. Semua hak dilindungi.
           </p>
           <p className="text-muted-foreground text-sm">
-            Dibuat dengan ❤️ oleh komunitas
+            Dibuat dengan ❤️ oleh Devilish Community
           </p>
         </div>
       </div>
