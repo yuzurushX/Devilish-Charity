@@ -270,7 +270,7 @@ export default function Donate() {
               <div className="space-y-2">
                 <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
                   <User className="w-4 h-4 text-muted-foreground" />
-                  Nama Lengkap <span className="text-primary">*</span>
+                  Nama  <span className="text-primary">*</span>
                 </label>
                 <Input
                   name="name"
