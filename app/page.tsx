@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
+import { ActivitiesCard } from '@/components/activities-card'
 
 function StatCard({
   label,
@@ -94,11 +95,9 @@ export default function Home() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16 max-w-4xl mx-auto"
+              className="mt-16 max-w-5xl mx-auto"
             >
-             {/* <StatCard label="Donatur Aktif" value="500+" delay={0.5} />
-              <StatCard label="Total Terkumpul" value="Rp 50M+" delay={0.55} />
-              <StatCard label="Kehidupan Terbantu" value="1000+" delay={0.6} /> */}
+              <ActivitiesCard />
             </motion.div>
           </div>
         </section>
