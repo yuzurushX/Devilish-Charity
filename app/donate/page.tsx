@@ -84,6 +84,26 @@ export default function Donate() {
     })
   }
 
+  const formatRupiah = (value: string) => {
+    const numbers = value.replace(/\D/g, '')
+
+    return numbers.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+  }
+
+  const handleAmountChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const rawValue = e.target.value
+
+    // remove everything except numbers
+    const numericValue = rawValue.replace(/\D/g, '')
+
+    setFormData((prev) => ({
+      ...prev,
+      amount: formatRupiah(numericValue),
+    }))
+  }
+
   const handleInputChange = (
     e:
       | React.ChangeEvent<HTMLInputElement>
@@ -216,7 +236,9 @@ export default function Donate() {
         )
       }
 
-      const amountNum = parseInt(formData.amount)
+      const amountNum = parseInt(
+        formData.amount.replace(/\./g, '')
+      )
 
       if (isNaN(amountNum) || amountNum <= 0) {
         throw new Error('Nominal donasi tidak valid')
@@ -365,8 +387,8 @@ export default function Donate() {
 
         <Card className="p-8 shadow-lg bg-card/50 backdrop-blur-sm border border-primary/20">
           <form onSubmit={handleSubmit} className="space-y-6">
-        
-            {/* Anonymous Donation Checkbox */}
+
+            {/* Anonymous */}
             <div className="space-y-2">
               <label className="flex items-center gap-3 cursor-pointer text-foreground">
                 <input
@@ -377,17 +399,17 @@ export default function Donate() {
                   className="w-4 h-4 rounded"
                   style={{ accentColor: 'var(--accent)' }}
                 />
-        
+
                 <span className="text-sm font-semibold">
                   Donasi Anonim
                 </span>
               </label>
-        
+
               <p className="text-xs text-muted-foreground">
                 ✓ Centang untuk mendonasi secara anonim
               </p>
             </div>
-        
+
             {/* Nama */}
             {!formData.isAnonymous && (
               <div className="space-y-2">
@@ -395,7 +417,7 @@ export default function Donate() {
                   <User className="w-4 h-4 text-muted-foreground" />
                   Nama
                 </label>
-        
+
                 <Input
                   name="name"
                   value={formData.name}
@@ -404,14 +426,14 @@ export default function Donate() {
                 />
               </div>
             )}
-        
+
             {/* Discord */}
             {!formData.isAnonymous && (
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-primary">
                   Username Discord
                 </label>
-        
+
                 <Input
                   name="discordUsername"
                   value={formData.discordUsername}
@@ -420,34 +442,35 @@ export default function Donate() {
                 />
               </div>
             )}
-        
+
             {/* Amount */}
             <div className="space-y-2">
               <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
                 <DollarSign className="w-4 h-4 text-muted-foreground" />
                 Nominal Donasi
               </label>
-        
+
               <div className="flex items-center gap-2">
                 <span>Rp</span>
-        
+
                 <Input
                   name="amount"
-                  type="number"
+                  type="text"
+                  inputMode="numeric"
                   value={formData.amount}
-                  onChange={handleInputChange}
-                  placeholder="50000"
+                  onChange={handleAmountChange}
+                  placeholder="50.000"
                 />
               </div>
             </div>
-        
+
             {/* Message */}
             <div className="space-y-2">
               <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
                 <MessageSquare className="w-4 h-4 text-muted-foreground" />
                 Pesan / Doa
               </label>
-        
+
               <textarea
                 name="message"
                 value={formData.message}
@@ -457,14 +480,14 @@ export default function Donate() {
                 className="w-full bg-background text-foreground border border-border rounded-lg p-3 text-sm"
               />
             </div>
-        
+
             {/* Upload */}
             <div className="space-y-2">
               <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
                 <Upload className="w-4 h-4 text-muted-foreground" />
                 Bukti Transfer
               </label>
-        
+
               <div
                 onDragOver={handleDragOver}
                 onDrop={handleDrop}
@@ -477,8 +500,11 @@ export default function Donate() {
                   id="fileInput"
                   accept=".jpg,.jpeg,.png,.pdf"
                 />
-        
-                <label htmlFor="fileInput" className="cursor-pointer block">
+
+                <label
+                  htmlFor="fileInput"
+                  className="cursor-pointer block"
+                >
                   {filePreview ? (
                     <div className="space-y-3">
                       <img
@@ -486,7 +512,7 @@ export default function Donate() {
                         alt="Preview"
                         className="w-24 h-24 mx-auto rounded-lg object-cover"
                       />
-        
+
                       <div>
                         <p className="text-sm font-medium">
                           {file?.name}
@@ -496,7 +522,7 @@ export default function Donate() {
                   ) : (
                     <>
                       <Upload className="w-8 h-8 mx-auto mb-2 text-primary/60" />
-        
+
                       <p className="text-sm font-medium">
                         Klik untuk upload
                       </p>
@@ -505,30 +531,35 @@ export default function Donate() {
                 </label>
               </div>
             </div>
-        
+
             {/* Progress */}
             {uploadProgress > 0 && (
               <div className="space-y-2">
                 <div className="h-2 bg-border rounded-full overflow-hidden">
                   <div
                     className="h-2 bg-primary rounded-full transition-all duration-300"
-                    style={{ width: `${uploadProgress}%` }}
+                    style={{
+                      width: `${uploadProgress}%`,
+                    }}
                   />
                 </div>
               </div>
             )}
-        
+
             {/* Submit */}
             <Button
               disabled={isLoading}
               className="w-full"
             >
-              {isLoading ? 'Memproses...' : 'Kirim Konfirmasi Donasi'}
+              {isLoading
+                ? 'Memproses...'
+                : 'Kirim Konfirmasi Donasi'}
             </Button>
           </form>
         </Card>
       </div>
 
+      {/* Modal */}
       <Dialog
         open={modal.open}
         onOpenChange={(open) =>
