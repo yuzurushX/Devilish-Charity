@@ -56,13 +56,42 @@ export async function POST(request: NextRequest) {
       16776960,
       [
         { name: 'Nama Donatur', value: donorName, inline: true },
-        { name: 'Nominal', value: `Rp ${amount.toLocaleString('id-ID')}`, inline: true },
-        { name: 'Username Discord', value: isAnonymous ? 'Anonim' : (discordUsername || 'Tidak ada'), inline: true },
-        { name: 'Metode Pembayaran', value: paymentMethod, inline: true },
-        { name: 'Tipe', value: isAnonymous ? '🔒 Anonim' : 'Terbuka', inline: true },
-        { name: 'Pesan', value: message || 'Tidak ada', inline: false },
-        { name: 'ID Donasi', value: donation.id, inline: false },
-      ]
+        {
+          name: 'Nominal',
+          value: `Rp ${amount.toLocaleString('id-ID')}`,
+          inline: true,
+        },
+        {
+          name: 'Username Discord',
+          value: isAnonymous
+            ? 'Anonim'
+            : (discordUsername || 'Tidak ada'),
+          inline: true,
+        },
+        {
+          name: 'Metode Pembayaran',
+          value: paymentMethod,
+          inline: true,
+        },
+        {
+          name: 'Tipe',
+          value: isAnonymous ? '🔒 Anonim' : 'Terbuka',
+          inline: true,
+        },
+        {
+          name: 'Pesan',
+          value: message || 'Tidak ada',
+          inline: false,
+        },
+        {
+          name: 'ID Donasi',
+          value: donation.id,
+          inline: false,
+        },
+      ],
+    
+      // mention here
+      '<@1419903183542681704> <@363345483634311180>'
     )
 
     return NextResponse.json({
