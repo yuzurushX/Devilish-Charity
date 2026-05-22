@@ -2,7 +2,12 @@ export async function sendDiscordNotification(
   title: string,
   description: string,
   color: number,
-  fields?: Array<{ name: string; value: string; inline?: boolean }>
+  fields?: Array<{
+    name: string
+    value: string
+    inline?: boolean
+  }>,
+  mention?: string
 ) {
   const webhookUrl = process.env.DISCORD_WEBHOOK_URL
 
@@ -21,6 +26,7 @@ export async function sendDiscordNotification(
     }
 
     const payload = {
+      content: mention || '', // mention goes here
       embeds: [embed],
     }
 
@@ -33,9 +39,15 @@ export async function sendDiscordNotification(
     })
 
     if (!response.ok) {
-      console.error('[v0] Discord webhook error:', response.statusText)
+      console.error(
+        '[v0] Discord webhook error:',
+        response.statusText
+      )
     }
   } catch (error) {
-    console.error('[v0] Failed to send Discord notification:', error)
+    console.error(
+      '[v0] Failed to send Discord notification:',
+      error
+    )
   }
 }
