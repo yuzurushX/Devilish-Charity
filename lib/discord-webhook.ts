@@ -8,7 +8,7 @@ export async function sendDiscordNotification(
     inline?: boolean
   }>,
   mention?: string
-) {
+): Promise<void> {
   const webhookUrl = process.env.DISCORD_WEBHOOK_URL
 
   if (!webhookUrl) {
@@ -26,7 +26,7 @@ export async function sendDiscordNotification(
     }
 
     const payload = {
-      content: mention || '', // mention goes here
+      content: mention || '',
       embeds: [embed],
     }
 
