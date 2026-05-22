@@ -48,7 +48,7 @@ export default function Guide() {
               </div>
             </div>
           </Card>
-
+          
           {/* Step 2 */}
           <Card className="p-8 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40">
             <div className="flex gap-6">
@@ -57,50 +57,14 @@ export default function Guide() {
               </div>
               <div>
                 <h3 className="text-2xl font-bold mb-3 text-primary">
-                  Isi Data Donasi
+                  Lakukan Transfer Donasi
                 </h3>
                 <p className="mb-4 text-muted-foreground">
-                  Masukkan jumlah donasi dan detail informasi Anda. Anda dapat menggunakan opsi <b>Donasi Anomim</b> untuk menyembunyikan nama dan Discord Anda dari daftar transparansi publik (admin tetap memverifikasi pembayaran Anda).
+                  Transfer donasi Anda ke salah satu rekening yang tersedia pada halaman donasi sebelum mengisi formulir pengajuan.
                 </p>
+          
                 <div className="mt-4 p-4 rounded-lg text-sm bg-primary/5 text-foreground border border-primary/20">
-                  💡 Dengan mengisi username Discord, anda akan diundang ke server Discord Devilish dan mendapatkan update kegiatan charity.
-                </div>
-              </div>
-            </div>
-          </Card>
-
-          {/* Bank Account Card */}
-          <Card className="p-8 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40">
-            <div className="flex gap-6">
-              <div className="flex items-center justify-center h-20 w-32 rounded-md flex-shrink-0">
-                <Image 
-                  src="/smbc-logo.png"
-                  alt="SMBC Logo"
-                  width={120}
-                  height={60}
-                  className="object-contain"
-                />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold mb-4 text-primary">
-                  Informasi Rekening Bank
-                </h3>
-                <div className="space-y-3 text-foreground">
-                  <div>
-                    <p className="text-sm text-muted-foreground">Bank</p>
-                    <p className="font-semibold">SMBC (Sumitomo Mitsui Banking Corporation)</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Nomor Rekening</p>
-                    <p className="font-semibold font-mono text-lg">90012331247</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Atas Nama (a.n.)</p>
-                    <p className="font-semibold">Ahmad Fadillah Ruswansyah</p>
-                  </div>
-                </div>
-                <div className="mt-4 p-4 rounded-lg text-sm bg-primary/5 text-foreground border border-primary/20">
-                  💡 Lakukan transfer ke rekening ini dan upload bukti transfer pada form donasi.
+                  💡 Simpan bukti transfer karena akan diperlukan saat mengisi form donasi.
                 </div>
               </div>
             </div>
@@ -111,6 +75,27 @@ export default function Guide() {
             <div className="flex gap-6">
               <div className="flex items-center justify-center h-12 w-12 rounded-lg text-white text-lg font-bold bg-primary/20 text-primary shrink-0">
                 3
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-3 text-primary">
+                  Isi Form Donasi
+                </h3>
+                <p className="mb-4 text-muted-foreground">
+                  Masukkan jumlah donasi dan detail informasi Anda. Anda dapat menggunakan opsi <b>Donasi Anonim</b> untuk menyembunyikan nama dan Discord Anda dari daftar transparansi publik (admin tetap memverifikasi pembayaran Anda).
+                </p>
+          
+                <div className="mt-4 p-4 rounded-lg text-sm bg-primary/5 text-foreground border border-primary/20">
+                  💡 Dengan mengisi username Discord, Anda akan diundang ke server Discord Devilish dan mendapatkan update kegiatan charity.
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Step 4 */}
+          <Card className="p-8 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40">
+            <div className="flex gap-6">
+              <div className="flex items-center justify-center h-12 w-12 rounded-lg text-white text-lg font-bold bg-primary/20 text-primary shrink-0">
+                4
               </div>
               <div>
                 <h3 className="text-2xl font-bold mb-3 text-primary">
@@ -130,7 +115,7 @@ export default function Guide() {
           <Card className="p-8 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40">
             <div className="flex gap-6">
               <div className="flex items-center justify-center h-12 w-12 rounded-lg text-white text-lg font-bold bg-primary/20 text-primary shrink-0">
-                4
+                5
               </div>
               <div>
                 <h3 className="text-2xl font-bold mb-3 text-primary">
