@@ -363,7 +363,170 @@ export default function Donate() {
           ))}
         </div>
 
-        {/* your existing form stays here */}
+        <Card className="p-8 shadow-lg bg-card/50 backdrop-blur-sm border border-primary/20">
+          <form onSubmit={handleSubmit} className="space-y-6">
+        
+            {/* Anonymous Donation Checkbox */}
+            <div className="space-y-2">
+              <label className="flex items-center gap-3 cursor-pointer text-foreground">
+                <input
+                  type="checkbox"
+                  name="isAnonymous"
+                  checked={formData.isAnonymous}
+                  onChange={handleInputChange}
+                  className="w-4 h-4 rounded"
+                  style={{ accentColor: 'var(--accent)' }}
+                />
+        
+                <span className="text-sm font-semibold">
+                  Donasi Anonim
+                </span>
+              </label>
+        
+              <p className="text-xs text-muted-foreground">
+                ✓ Centang untuk mendonasi secara anonim
+              </p>
+            </div>
+        
+            {/* Nama */}
+            {!formData.isAnonymous && (
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
+                  <User className="w-4 h-4 text-muted-foreground" />
+                  Nama
+                </label>
+        
+                <Input
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Masukkan nama Anda"
+                />
+              </div>
+            )}
+        
+            {/* Discord */}
+            {!formData.isAnonymous && (
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-primary">
+                  Username Discord
+                </label>
+        
+                <Input
+                  name="discordUsername"
+                  value={formData.discordUsername}
+                  onChange={handleInputChange}
+                  placeholder="Nama Discord Anda"
+                />
+              </div>
+            )}
+        
+            {/* Amount */}
+            <div className="space-y-2">
+              <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
+                <DollarSign className="w-4 h-4 text-muted-foreground" />
+                Nominal Donasi
+              </label>
+        
+              <div className="flex items-center gap-2">
+                <span>Rp</span>
+        
+                <Input
+                  name="amount"
+                  type="number"
+                  value={formData.amount}
+                  onChange={handleInputChange}
+                  placeholder="50000"
+                />
+              </div>
+            </div>
+        
+            {/* Message */}
+            <div className="space-y-2">
+              <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
+                <MessageSquare className="w-4 h-4 text-muted-foreground" />
+                Pesan / Doa
+              </label>
+        
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
+                rows={3}
+                placeholder="Pesan atau doa..."
+                className="w-full bg-background text-foreground border border-border rounded-lg p-3 text-sm"
+              />
+            </div>
+        
+            {/* Upload */}
+            <div className="space-y-2">
+              <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
+                <Upload className="w-4 h-4 text-muted-foreground" />
+                Bukti Transfer
+              </label>
+        
+              <div
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+                className="border-2 border-dashed rounded-lg p-6 text-center"
+              >
+                <input
+                  type="file"
+                  onChange={handleFileChange}
+                  className="hidden"
+                  id="fileInput"
+                  accept=".jpg,.jpeg,.png,.pdf"
+                />
+        
+                <label htmlFor="fileInput" className="cursor-pointer block">
+                  {filePreview ? (
+                    <div className="space-y-3">
+                      <img
+                        src={filePreview}
+                        alt="Preview"
+                        className="w-24 h-24 mx-auto rounded-lg object-cover"
+                      />
+        
+                      <div>
+                        <p className="text-sm font-medium">
+                          {file?.name}
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <Upload className="w-8 h-8 mx-auto mb-2 text-primary/60" />
+        
+                      <p className="text-sm font-medium">
+                        Klik untuk upload
+                      </p>
+                    </>
+                  )}
+                </label>
+              </div>
+            </div>
+        
+            {/* Progress */}
+            {uploadProgress > 0 && (
+              <div className="space-y-2">
+                <div className="h-2 bg-border rounded-full overflow-hidden">
+                  <div
+                    className="h-2 bg-primary rounded-full transition-all duration-300"
+                    style={{ width: `${uploadProgress}%` }}
+                  />
+                </div>
+              </div>
+            )}
+        
+            {/* Submit */}
+            <Button
+              disabled={isLoading}
+              className="w-full"
+            >
+              {isLoading ? 'Memproses...' : 'Kirim Konfirmasi Donasi'}
+            </Button>
+          </form>
+        </Card>
       </div>
 
       <Dialog
