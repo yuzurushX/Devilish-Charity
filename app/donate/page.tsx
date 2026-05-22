@@ -276,7 +276,7 @@ export default function Donate() {
       setUploadProgress(100)
 
       showSuccess(
-        'Terima kasih 🙏 Donasi kamu berhasil dikirim dan sedang menunggu verifikasi admin Devilish Community.'
+        'Terima kasih 🙏 Donasi berhasil dikirim dan sedang menunggu verifikasi admin (maks. 1x24 jam). Setelah terverifikasi, donasi anda akan muncul di halaman transparansi.'
       )
 
       setFormData({
