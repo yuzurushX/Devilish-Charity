@@ -10,6 +10,8 @@ import {
   DollarSign,
   User,
   MessageSquare,
+  Copy,
+  Check,
 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -43,6 +45,8 @@ export default function Donate() {
 
   const [isLoading, setIsLoading] = useState(false)
   const [uploadProgress, setUploadProgress] = useState(0)
+
+  const [copiedAccount, setCopiedAccount] = useState('')
 
   const [modal, setModal] = useState({
     open: false,
@@ -84,6 +88,23 @@ export default function Donate() {
     })
   }
 
+  const handleCopy = async (text: string) => {
+    try {
+      // remove spaces before copying
+      const cleanedText = text.replace(/\s/g, '')
+
+      await navigator.clipboard.writeText(cleanedText)
+
+      setCopiedAccount(text)
+
+      setTimeout(() => {
+        setCopiedAccount('')
+      }, 2000)
+    } catch {
+      showError('Gagal menyalin nomor rekening')
+    }
+  }
+
   const formatRupiah = (value: string) => {
     const numbers = value.replace(/\D/g, '')
 
@@ -95,7 +116,6 @@ export default function Donate() {
   ) => {
     const rawValue = e.target.value
 
-    // remove everything except numbers
     const numericValue = rawValue.replace(/\D/g, '')
 
     setFormData((prev) => ({
@@ -364,9 +384,26 @@ export default function Donate() {
                         Nomor Rekening
                       </p>
 
-                      <p className="font-semibold font-mono text-lg">
-                        {account.accountNumber}
-                      </p>
+                      <div className="flex items-center gap-2">
+                        <p className="font-semibold font-mono text-lg">
+                          {account.accountNumber}
+                        </p>
+
+                        <button
+                          type="button"
+                          onClick={() =>
+                            handleCopy(account.accountNumber)
+                          }
+                          className="p-1 rounded-md hover:bg-primary/10 transition-colors"
+                        >
+                          {copiedAccount ===
+                          account.accountNumber ? (
+                            <Check className="w-4 h-4 text-green-500" />
+                          ) : (
+                            <Copy className="w-4 h-4 text-muted-foreground" />
+                          )}
+                        </button>
+                      </div>
                     </div>
 
                     <div>
@@ -387,7 +424,6 @@ export default function Donate() {
 
         <Card className="p-8 shadow-lg bg-card/50 backdrop-blur-sm border border-primary/20">
           <form onSubmit={handleSubmit} className="space-y-6">
-
             {/* Anonymous */}
             <div className="space-y-2">
               <label className="flex items-center gap-3 cursor-pointer text-foreground">
@@ -410,7 +446,6 @@ export default function Donate() {
               </p>
             </div>
 
-            {/* Nama */}
             {!formData.isAnonymous && (
               <div className="space-y-2">
                 <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
@@ -427,7 +462,6 @@ export default function Donate() {
               </div>
             )}
 
-            {/* Discord */}
             {!formData.isAnonymous && (
               <div className="space-y-2">
                 <label className="block text-sm font-semibold text-primary">
@@ -443,7 +477,6 @@ export default function Donate() {
               </div>
             )}
 
-            {/* Amount */}
             <div className="space-y-2">
               <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
                 <DollarSign className="w-4 h-4 text-muted-foreground" />
@@ -464,7 +497,6 @@ export default function Donate() {
               </div>
             </div>
 
-            {/* Message */}
             <div className="space-y-2">
               <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
                 <MessageSquare className="w-4 h-4 text-muted-foreground" />
@@ -481,7 +513,6 @@ export default function Donate() {
               />
             </div>
 
-            {/* Upload */}
             <div className="space-y-2">
               <label className="block text-sm font-semibold flex items-center gap-2 text-primary">
                 <Upload className="w-4 h-4 text-muted-foreground" />
@@ -532,7 +563,6 @@ export default function Donate() {
               </div>
             </div>
 
-            {/* Progress */}
             {uploadProgress > 0 && (
               <div className="space-y-2">
                 <div className="h-2 bg-border rounded-full overflow-hidden">
@@ -546,7 +576,6 @@ export default function Donate() {
               </div>
             )}
 
-            {/* Submit */}
             <Button
               disabled={isLoading}
               className="w-full"
@@ -559,7 +588,6 @@ export default function Donate() {
         </Card>
       </div>
 
-      {/* Modal */}
       <Dialog
         open={modal.open}
         onOpenChange={(open) =>
