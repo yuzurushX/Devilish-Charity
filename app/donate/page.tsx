@@ -38,6 +38,7 @@ export default function Donate() {
     paymentMethod: 'bank_transfer',
     message: '',
     isAnonymous: false,
+    selectedRekening: '',
   })
 
   const [file, setFile] = useState<File | null>(null)
@@ -57,16 +58,20 @@ export default function Donate() {
 
   const bankAccounts = [
     {
+      id: 'smbc',
       bank: 'SMBC (Sumitomo Mitsui Banking Corporation)',
       accountNumber: '90012331247',
       accountName: 'Ahmad Fadillah Ruswansyah',
       logo: '/smbc-logo.png',
+      discordMentionId: '1419903183542681704',
     },
     {
+      id: 'mandiri',
       bank: 'Mandiri',
       accountNumber: '4616 9912 2306 9855',
       accountName: 'Maha Dewi Putri',
       logo: '/mandiri-logo.png',
+      discordMentionId: '758367171427827724',
     },
   ]
 
@@ -240,6 +245,10 @@ export default function Donate() {
     setUploadProgress(0)
 
     try {
+      if (!formData.selectedRekening) {
+        throw new Error('Mohon pilih rekening tujuan transfer')
+      }
+
       if (!formData.isAnonymous && !formData.name) {
         throw new Error(
           'Mohon lengkapi nama atau pilih donasi anonim'
@@ -282,6 +291,7 @@ export default function Donate() {
           name: formData.isAnonymous
             ? 'Anonim'
             : formData.name,
+          selectedRekening: formData.selectedRekening,
         }),
       })
 
@@ -306,6 +316,7 @@ export default function Donate() {
         paymentMethod: 'bank_transfer',
         message: '',
         isAnonymous: false,
+        selectedRekening: '',
       })
 
       setFile(null)
@@ -347,79 +358,113 @@ export default function Donate() {
 
       <div className="container mx-auto max-w-2xl py-12 px-4">
         <div className="space-y-6 mb-8">
-          {bankAccounts.map((account, index) => (
-            <Card
-              key={index}
-              className="p-8 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40"
-            >
-              <div className="flex gap-6">
-                <div className="flex items-center justify-center h-20 w-32 rounded-md flex-shrink-0">
-                  <Image
-                    src={account.logo}
-                    alt={`${account.bank} Logo`}
-                    width={120}
-                    height={60}
-                    className="object-contain"
-                  />
-                </div>
+          <div>
+            <h2 className="text-lg font-bold text-foreground mb-1">
+              Pilih Rekening Tujuan
+            </h2>
+            <p className="text-sm text-muted-foreground mb-4">
+              Pilih salah satu rekening di bawah ini untuk transfer donasi Anda.
+            </p>
+          </div>
 
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-4 text-primary">
-                    Informasi Rekening Bank
-                  </h3>
-
-                  <div className="space-y-3 text-foreground">
-                    <div>
-                      <p className="text-sm text-muted-foreground">
-                        Bank
-                      </p>
-
-                      <p className="font-semibold">
-                        {account.bank}
-                      </p>
+          {bankAccounts.map((account, index) => {
+            const isSelected = formData.selectedRekening === account.id
+            return (
+              <button
+                key={index}
+                type="button"
+                onClick={() =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    selectedRekening: account.id,
+                  }))
+                }
+                className={`w-full text-left transition-all rounded-lg border-2 ${
+                  isSelected
+                    ? 'border-primary ring-2 ring-primary/30'
+                    : 'border-primary/20 hover:border-primary/40'
+                }`}
+              >
+                <Card
+                  className={`p-8 transition-shadow border-0 rounded-lg bg-card/50 backdrop-blur-sm ${
+                    isSelected ? 'shadow-lg' : 'hover:shadow-md'
+                  }`}
+                >
+                  <div className="flex gap-6">
+                    <div className="flex items-center justify-center h-20 w-32 rounded-md flex-shrink-0">
+                      <Image
+                        src={account.logo}
+                        alt={`${account.bank} Logo`}
+                        width={120}
+                        height={60}
+                        className="object-contain"
+                      />
                     </div>
 
-                    <div>
-                      <p className="text-sm text-muted-foreground">
-                        Nomor Rekening
-                      </p>
-
-                      <div className="flex items-center gap-2">
-                        <p className="font-semibold font-mono text-lg">
-                          {account.accountNumber}
-                        </p>
-
-                        <button
-                          type="button"
-                          onClick={() =>
-                            handleCopy(account.accountNumber)
-                          }
-                          className="p-1 rounded-md hover:bg-primary/10 transition-colors"
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-2xl font-bold text-primary">
+                          Informasi Rekening Bank
+                        </h3>
+                        <div
+                          className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+                            isSelected
+                              ? 'border-primary bg-primary'
+                              : 'border-muted-foreground'
+                          }`}
                         >
-                          {copiedAccount ===
-                          account.accountNumber ? (
-                            <Check className="w-4 h-4 text-green-500" />
-                          ) : (
-                            <Copy className="w-4 h-4 text-muted-foreground" />
+                          {isSelected && (
+                            <div className="w-2 h-2 rounded-full bg-white" />
                           )}
-                        </button>
+                        </div>
+                      </div>
+
+                      <div className="space-y-3 text-foreground">
+                        <div>
+                          <p className="text-sm text-muted-foreground">
+                            Bank
+                          </p>
+                          <p className="font-semibold">{account.bank}</p>
+                        </div>
+
+                        <div>
+                          <p className="text-sm text-muted-foreground">
+                            Nomor Rekening
+                          </p>
+                          <div className="flex items-center gap-2">
+                            <p className="font-semibold font-mono text-lg">
+                              {account.accountNumber}
+                            </p>
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                handleCopy(account.accountNumber)
+                              }}
+                              className="p-1 rounded-md hover:bg-primary/10 transition-colors"
+                            >
+                              {copiedAccount === account.accountNumber ? (
+                                <Check className="w-4 h-4 text-green-500" />
+                              ) : (
+                                <Copy className="w-4 h-4 text-muted-foreground" />
+                              )}
+                            </button>
+                          </div>
+                        </div>
+
+                        <div>
+                          <p className="text-sm text-muted-foreground">
+                            Atas Nama (a.n.)
+                          </p>
+                          <p className="font-semibold">{account.accountName}</p>
+                        </div>
                       </div>
                     </div>
-
-                    <div>
-                      <p className="text-sm text-muted-foreground">
-                        Atas Nama (a.n.)
-                      </p>
-
-                      <p className="font-semibold">
-                        {account.accountName}
-                      </p>
-                    </div>
                   </div>
-                </div>
-              </div>
-            </Card>
-          ))}
+                </Card>
+              </button>
+            )
+          })}
         </div>
 
         <Card className="p-8 shadow-lg bg-card/50 backdrop-blur-sm border border-primary/20">

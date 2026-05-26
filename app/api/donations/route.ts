@@ -2,10 +2,16 @@ import { NextRequest, NextResponse } from 'next/server'
 import { sendDiscordNotification } from '@/lib/discord-webhook'
 import { createAdminSupabaseClient } from '@/lib/supabase-admin'
 
+// Map rekening id → Discord user ID
+const REKENING_DISCORD_MAP: Record<string, string> = {
+  smbc: '1419903183542681704',
+  mandiri: '363345483634311180',
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, discordUsername, amount, paymentMethod, proofUrl, message, isAnonymous } = body
+    const { name, discordUsername, amount, paymentMethod, proofUrl, message, isAnonymous, selectedRekening } = body
 
     // Validate inputs
     if (!name || !amount || !paymentMethod || !proofUrl) {
@@ -36,6 +42,7 @@ export async function POST(request: NextRequest) {
         message: message || null,
         is_anonymous: isAnonymous || false,
         status: 'pending',
+        selected_rekening: selectedRekening || null,
       })
       .select()
 
@@ -46,6 +53,14 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       )
     }
+
+    // Resolve which Discord user to mention based on selected rekening
+    const mentionId = selectedRekening
+      ? REKENING_DISCORD_MAP[selectedRekening]
+      : null
+    const discordMention = mentionId
+      ? `<@${mentionId}>`
+      : '<@1419903183542681704> <@363345483634311180>'
 
     // Send Discord notification for new pending donation
     const donation = data[0]
@@ -74,6 +89,15 @@ export async function POST(request: NextRequest) {
           inline: true,
         },
         {
+          name: 'Rekening Tujuan',
+          value: selectedRekening === 'smbc'
+            ? 'SMBC (Ahmad Fadillah Ruswansyah)'
+            : selectedRekening === 'mandiri'
+            ? 'Mandiri (Maha Dewi Putri)'
+            : 'Tidak dipilih',
+          inline: true,
+        },
+        {
           name: 'Tipe',
           value: isAnonymous ? '🔒 Anonim' : 'Terbuka',
           inline: true,
@@ -89,9 +113,9 @@ export async function POST(request: NextRequest) {
           inline: false,
         },
       ],
-    
-      // mention here
-      '<@1419903183542681704> <@363345483634311180>'
+
+      // Only mention the rekening owner
+      discordMention
     )
 
     return NextResponse.json({
