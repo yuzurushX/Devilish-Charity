@@ -5,7 +5,7 @@ import { createAdminSupabaseClient } from '@/lib/supabase-admin'
 // Map rekening id → Discord user ID
 const REKENING_DISCORD_MAP: Record<string, string> = {
   smbc: '1419903183542681704',
-  mandiri: '363345483634311180',
+  mandiri: '758367171427827724',
 }
 
 export async function POST(request: NextRequest) {
