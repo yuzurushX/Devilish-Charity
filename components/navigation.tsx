@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { Menu, X } from 'lucide-react'
+import { useCampaignSummary } from '@/hooks/use-campaign-summary'
 
 const navLinks = [
   { href: '/', label: 'Beranda' },
@@ -19,6 +20,10 @@ const navLinks = [
 export function Navigation() {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
+  const { campaign } = useCampaignSummary()
+  const isDonationClosed = campaign.settings.donation_status === 'closed'
+  const primaryHref = isDonationClosed ? '/transparansi' : '/donate'
+  const primaryLabel = isDonationClosed ? 'Lihat Progress' : 'Donasi Sekarang'
 
   if (pathname?.startsWith('/admin')) {
     return null
@@ -62,9 +67,9 @@ export function Navigation() {
               Admin
             </Button>
           </Link>
-          <Link href="/donate">
+          <Link href={primaryHref}>
             <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              Donasi Sekarang
+              {primaryLabel}
             </Button>
           </Link>
         </div>
@@ -108,9 +113,9 @@ export function Navigation() {
                     Admin
                   </Button>
                 </Link>
-                <Link href="/donate" className="flex-1" onClick={() => setIsOpen(false)}>
+                <Link href={primaryHref} className="flex-1" onClick={() => setIsOpen(false)}>
                   <Button size="sm" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                    Donasi Sekarang
+                    {primaryLabel}
                   </Button>
                 </Link>
               </div>

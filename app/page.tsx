@@ -8,30 +8,15 @@ import { Card } from '@/components/ui/card'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { ActivitiesCard } from '@/components/activities-card'
-
-function StatCard({
-  label,
-  value,
-  delay,
-}: {
-  label: string
-  value: string
-  delay: number
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.4, delay }}
-      className="bg-card/50 backdrop-blur-sm border border-border rounded-xl p-6 text-center hover:border-primary/30 transition-colors"
-    >
-      <p className="text-2xl md:text-3xl font-bold text-foreground mb-1">{value}</p>
-      <p className="text-sm text-muted-foreground">{label}</p>
-    </motion.div>
-  )
-}
+import { CampaignStatusPanel } from '@/components/campaign-status-panel'
+import { useCampaignSummary } from '@/hooks/use-campaign-summary'
 
 export default function Home() {
+  const { campaign } = useCampaignSummary()
+  const isDonationClosed = campaign.settings.donation_status === 'closed'
+  const primaryHref = isDonationClosed ? '/transparansi' : '/donate'
+  const primaryLabel = isDonationClosed ? 'Lihat Progress' : 'Donasi Sekarang'
+
   return (
     <main className="min-h-screen bg-background">
       <Navigation />
@@ -76,10 +61,10 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="flex flex-col sm:flex-row gap-4 justify-center"
               >
-                <Link href="/donate">
+                <Link href={primaryHref}>
                   <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg glow-primary w-full sm:w-auto">
                     <Heart className="w-5 h-5 mr-2 fill-current" />
-                    Donasi Sekarang
+                    {primaryLabel}
                   </Button>
                 </Link>
                 <Link href="/guide">
@@ -100,6 +85,10 @@ export default function Home() {
               <ActivitiesCard />
             </motion.div>
           </div>
+        </section>
+
+        <section className="container mx-auto px-4 py-10">
+          <CampaignStatusPanel compact />
         </section>
 
         {/* Features */}
@@ -174,9 +163,9 @@ export default function Home() {
                 Dari dukungan komunitas hingga proyek bermakna, donasi kamu menghadirkan harapan, bantuan, dan masa depan. 
                 Setiap donasi yang kamu berikan menciptakan dampak bagi mereka yang membutuhkan. 
               </p>
-              <Link href="/donate">
+              <Link href={primaryHref}>
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg">
-                  Donasi Sekarang
+                  {primaryLabel}
                 </Button>
               </Link>
             </div>

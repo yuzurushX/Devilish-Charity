@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 
 import {
   CheckCircle,
@@ -17,6 +18,8 @@ import {
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
+import { CampaignStatusPanel } from '@/components/campaign-status-panel'
+import { useCampaignSummary } from '@/hooks/use-campaign-summary'
 
 import {
   Dialog,
@@ -31,6 +34,9 @@ import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 
 export default function Donate() {
+  const { campaign } = useCampaignSummary()
+  const isDonationClosed = campaign.settings.donation_status === 'closed'
+
   const [formData, setFormData] = useState({
     name: '',
     discordUsername: '',
@@ -241,6 +247,11 @@ export default function Donate() {
   ) => {
     e.preventDefault()
 
+    if (isDonationClosed) {
+      showError('Donasi sedang ditutup untuk saat ini.')
+      return
+    }
+
     setIsLoading(true)
     setUploadProgress(0)
 
@@ -306,7 +317,7 @@ export default function Donate() {
       setUploadProgress(100)
 
       showSuccess(
-        'Terima kasih 🙏 Donasi berhasil dikirim dan sedang menunggu verifikasi admin (maks. 1x24 jam). Setelah terverifikasi, donasi anda akan muncul di halaman transparansi.'
+        'Terima kasih. Donasi berhasil dikirim dan sedang menunggu verifikasi admin (maks. 1x24 jam). Setelah terverifikasi, donasi anda akan muncul di halaman transparansi.'
       )
 
       setFormData({
@@ -356,7 +367,32 @@ export default function Donate() {
         </div>
       </section>
 
+      <div className="container mx-auto max-w-5xl pt-12 px-4">
+        <CampaignStatusPanel showAction={false} />
+      </div>
+
       <div className="container mx-auto max-w-2xl py-12 px-4">
+        {isDonationClosed ? (
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+          >
+            <Card className="p-8 text-center bg-card/50 backdrop-blur-sm border border-primary/20">
+              <AlertCircle className="w-10 h-10 mx-auto mb-4 text-primary" />
+              <h2 className="text-2xl font-bold text-foreground mb-3">
+                Form Donasi Sedang Ditutup
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Campaign ini sudah tidak menerima konfirmasi donasi baru.
+                Silakan pantau halaman transparansi untuk progres kegiatan,
+                penyaluran, dan dokumentasi terbaru.
+              </p>
+            </Card>
+          </motion.div>
+        ) : null}
+
+        <div className={isDonationClosed ? 'hidden' : ''}>
         <div className="space-y-6 mb-8">
           <div>
             <h2 className="text-lg font-bold text-foreground mb-1">
@@ -370,9 +406,11 @@ export default function Donate() {
           {bankAccounts.map((account, index) => {
             const isSelected = formData.selectedRekening === account.id
             return (
-              <button
+              <motion.button
                 key={index}
                 type="button"
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.99 }}
                 onClick={() =>
                   setFormData((prev) => ({
                     ...prev,
@@ -462,7 +500,7 @@ export default function Donate() {
                     </div>
                   </div>
                 </Card>
-              </button>
+              </motion.button>
             )
           })}
         </div>
@@ -487,7 +525,7 @@ export default function Donate() {
               </label>
 
               <p className="text-xs text-muted-foreground">
-                ✓ Centang untuk mendonasi secara anonim
+                Centang untuk mendonasi secara anonim
               </p>
             </div>
 
@@ -622,7 +660,7 @@ export default function Donate() {
             )}
 
             <Button
-              disabled={isLoading}
+              disabled={isLoading || isDonationClosed}
               className="w-full"
             >
               {isLoading
@@ -631,6 +669,7 @@ export default function Donate() {
             </Button>
           </form>
         </Card>
+        </div>
       </div>
 
       <Dialog

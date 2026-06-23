@@ -1,16 +1,18 @@
 'use client'
 
-import Link from "next/link"
-import { Heart } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 import { useEffect, useState } from 'react'
-import { TrendingUp, Users, DollarSign } from 'lucide-react'
+import { ExternalLink, ReceiptText, Users, DollarSign, Wallet } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
+import { CampaignStatusPanel } from '@/components/campaign-status-panel'
+import { useCampaignSummary } from '@/hooks/use-campaign-summary'
 import type { Donation } from '@/lib/donation-types'
 
 export default function Transparansi() {
+  const { campaign } = useCampaignSummary()
   const [donations, setDonations] = useState<Donation[]>([])
   const [loading, setLoading] = useState(true)
   const [totalAmount, setTotalAmount] = useState(0)
@@ -75,6 +77,10 @@ export default function Transparansi() {
         </div>
       </section>
 
+      <section className="container mx-auto px-4 py-12">
+        <CampaignStatusPanel showAction={false} />
+      </section>
+
       {/* Stats */}
       <section className="py-16 relative overflow-hidden border-t border-primary/20">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
@@ -100,6 +106,108 @@ export default function Transparansi() {
         </div>
       </section>
 
+      {/* Spending Transparency */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="mb-10 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 className="text-3xl font-bold text-foreground">
+              Transparansi <span className="text-primary">Belanja Charity</span>
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              Catatan penggunaan dana untuk kebutuhan kegiatan charity.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
+          <Card className="p-6 bg-card/50 backdrop-blur-sm border border-primary/20">
+            <DollarSign className="w-7 h-7 mb-4 text-primary" />
+            <p className="text-sm mb-2 text-muted-foreground">Dana Masuk</p>
+            <p className="text-2xl font-bold text-foreground">
+              {formatCurrency(campaign.totalAmount)}
+            </p>
+          </Card>
+          <Card className="p-6 bg-card/50 backdrop-blur-sm border border-primary/20">
+            <ReceiptText className="w-7 h-7 mb-4 text-primary" />
+            <p className="text-sm mb-2 text-muted-foreground">Dana Terpakai</p>
+            <p className="text-2xl font-bold text-foreground">
+              {formatCurrency(campaign.totalSpent)}
+            </p>
+          </Card>
+          <Card className="p-6 bg-card/50 backdrop-blur-sm border border-primary/20">
+            <Wallet className="w-7 h-7 mb-4 text-primary" />
+            <p className="text-sm mb-2 text-muted-foreground">Sisa Dana</p>
+            <p className="text-2xl font-bold text-foreground">
+              {formatCurrency(campaign.remainingAmount)}
+            </p>
+          </Card>
+        </div>
+
+        {campaign.expenses.length === 0 ? (
+          <Card className="p-10 text-center bg-card/50 backdrop-blur-sm border border-primary/20 max-w-6xl mx-auto">
+            <p className="text-lg text-foreground">
+              Belum ada catatan belanja charity.
+            </p>
+            <p className="text-muted-foreground mt-2">
+              Catatan penggunaan dana akan tampil di sini setelah admin menambahkannya.
+            </p>
+          </Card>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+            {campaign.expenses.map((expense, index) => (
+              <motion.div
+                key={expense.id}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: Math.min(index * 0.04, 0.2) }}
+              >
+                <Card className="p-6 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40 transition-colors">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="text-lg font-bold text-primary">
+                          {expense.title}
+                        </h3>
+                        {expense.category ? (
+                          <span className="px-2 py-0.5 rounded text-xs font-semibold bg-primary/20 text-primary">
+                            {expense.category}
+                          </span>
+                        ) : null}
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        {formatDate(expense.spent_at)}
+                      </p>
+                    </div>
+                    <p className="text-xl font-bold text-foreground">
+                      {formatCurrency(expense.amount)}
+                    </p>
+                  </div>
+
+                  {expense.description && (
+                    <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+                      {expense.description}
+                    </p>
+                  )}
+
+                  {expense.proof_url && (
+                    <a
+                      href={expense.proof_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+                    >
+                      Lihat bukti belanja
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  )}
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        )}
+      </section>
+
       {/* List Donations */}
       <section className="container mx-auto px-4 py-16">
         <h2 className="text-3xl font-bold mb-12 text-foreground">
@@ -121,45 +229,50 @@ export default function Transparansi() {
           </Card>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-            {donations.map((donation) => (
-              <Card
+            {donations.map((donation, index) => (
+              <motion.div
                 key={donation.id}
-                className="p-6 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: Math.min(index * 0.04, 0.2) }}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-lg font-bold text-primary">
-                        {donation.name}
-                      </h3>
-                      {donation.is_anonymous ? (
-                        <span className="px-2 py-0.5 rounded text-xs font-semibold bg-primary/20 text-primary">
-                          Anonim
-                        </span>
-                      ) : null}
+                <Card className="p-6 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="text-lg font-bold text-primary">
+                          {donation.name}
+                        </h3>
+                        {donation.is_anonymous ? (
+                          <span className="px-2 py-0.5 rounded text-xs font-semibold bg-primary/20 text-primary">
+                            Anonim
+                          </span>
+                        ) : null}
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        {formatDate(donation.created_at)}
+                      </p>
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                      {formatDate(donation.created_at)}
+                    <p className="text-2xl font-bold text-foreground">
+                      {formatCurrency(donation.amount)}
                     </p>
                   </div>
-                  <p className="text-2xl font-bold text-foreground">
-                    {formatCurrency(donation.amount)}
-                  </p>
-                </div>
 
-                {donation.message && (
-                  <div className="mt-4 p-4 rounded-lg border-l-2 bg-primary/5 border-primary/20">
-                    <p className="text-sm italic text-foreground">
-                      &quot;{donation.message}&quot;
-                    </p>
+                  {donation.message && (
+                    <div className="mt-4 p-4 rounded-lg border-l-2 bg-primary/5 border-primary/20">
+                      <p className="text-sm italic text-foreground">
+                        &quot;{donation.message}&quot;
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="mt-4 flex items-center gap-2 text-sm">
+                    <span className="inline-block w-2 h-2 rounded-full bg-primary" />
+                    <span className="text-primary font-medium">Donasi Terverifikasi</span>
                   </div>
-                )}
-
-                <div className="mt-4 flex items-center gap-2 text-sm">
-                  <span className="inline-block w-2 h-2 rounded-full bg-primary" />
-                  <span className="text-primary font-medium">Donasi Terverifikasi</span>
-                </div>
-              </Card>
+                </Card>
+              </motion.div>
             ))}
           </div>
         )}

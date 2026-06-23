@@ -1,14 +1,19 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
 import Link from "next/link"
 
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { Card } from '@/components/ui/card'
+import { useCampaignSummary } from '@/hooks/use-campaign-summary'
 
 export default function Guide() {
+  const { campaign } = useCampaignSummary()
+  const isDonationClosed = campaign.settings.donation_status === 'closed'
+  const primaryHref = isDonationClosed ? '/transparansi' : '/donate'
+  const primaryLabel = isDonationClosed ? 'Lihat Progress' : 'Donasi Sekarang'
+
   return (
     <div className="min-h-screen bg-background pt-16">
       <Navigation />
@@ -195,9 +200,9 @@ export default function Guide() {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 text-balance">
               Bergabunglah dengan kami dalam menciptakan dampak nyata melalui Devilish Charity.
             </p>
-            <Link href="/donate">
+            <Link href={primaryHref}>
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg">
-                Donasi Sekarang
+                {primaryLabel}
               </Button>
             </Link>
           </div>

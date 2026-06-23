@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sendDiscordNotification } from '@/lib/discord-webhook'
+import { defaultCampaignSettings } from '@/lib/campaign-types'
 import { createAdminSupabaseClient } from '@/lib/supabase-admin'
 
-// Map rekening id → Discord user ID
+// Map rekening id to Discord user ID
 const REKENING_DISCORD_MAP: Record<string, string> = {
   smbc: '1419903183542681704',
   mandiri: '758367171427827724',
@@ -29,6 +30,26 @@ export async function POST(request: NextRequest) {
     }
 
     const supabase = createAdminSupabaseClient()
+
+    const { data: campaignSettings, error: campaignError } = await supabase
+      .from('campaign_settings')
+      .select('donation_status')
+      .eq('id', true)
+      .maybeSingle()
+
+    if (campaignError) {
+      console.error('Campaign status check error:', campaignError)
+    }
+
+    const donationStatus =
+      campaignSettings?.donation_status || defaultCampaignSettings.donation_status
+
+    if (donationStatus !== 'open') {
+      return NextResponse.json(
+        { error: 'Donasi sedang ditutup untuk saat ini' },
+        { status: 403 }
+      )
+    }
 
     // Insert donation
     const { data, error } = await supabase
