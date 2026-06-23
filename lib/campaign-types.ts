@@ -27,6 +27,7 @@ export interface CampaignSummary {
   totalDonors: number
   totalSpent: number
   remainingAmount: number
+  expenseCount: number
   latestDonationAt: string | null
   expenses: CharityExpense[]
 }

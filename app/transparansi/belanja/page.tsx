@@ -10,7 +10,7 @@ import { Footer } from '@/components/footer'
 import { useCampaignSummary } from '@/hooks/use-campaign-summary'
 
 export default function DanaKeluar() {
-  const { campaign } = useCampaignSummary()
+  const { campaign } = useCampaignSummary({ includeExpenses: true })
 
   const formatCurrency = (amount: number) =>
     new Intl.NumberFormat('id-ID', {

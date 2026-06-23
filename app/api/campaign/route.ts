@@ -1,13 +1,13 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import {
   defaultCampaignSettings,
   type CampaignSettings,
 } from '@/lib/campaign-types'
 import { createAdminSupabaseClient } from '@/lib/supabase-admin'
 
-async function getDonationSummary() {
-  const supabase = createAdminSupabaseClient()
-
+async function getDonationSummary(
+  supabase: ReturnType<typeof createAdminSupabaseClient>
+) {
   const { data, error } = await supabase
     .from('donations')
     .select('amount, created_at')
@@ -30,12 +30,13 @@ async function getDonationSummary() {
   }
 }
 
-async function getExpenseSummary() {
-  const supabase = createAdminSupabaseClient()
-
+async function getExpenseSummary(
+  supabase: ReturnType<typeof createAdminSupabaseClient>,
+  includeExpenses: boolean
+) {
   const { data, error } = await supabase
     .from('charity_expenses')
-    .select('*')
+    .select(includeExpenses ? '*' : 'amount')
     .order('spent_at', { ascending: false })
     .order('created_at', { ascending: false })
 
@@ -43,43 +44,55 @@ async function getExpenseSummary() {
     console.error('Campaign expense summary error:', error)
     return {
       totalSpent: 0,
+      expenseCount: 0,
       expenses: [],
     }
   }
 
   return {
     totalSpent: (data || []).reduce((sum, expense) => sum + expense.amount, 0),
-    expenses: data || [],
+    expenseCount: data?.length || 0,
+    expenses: includeExpenses ? data || [] : [],
   }
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const includeExpenses = request.nextUrl.searchParams.get('includeExpenses') === 'true'
     const supabase = createAdminSupabaseClient()
 
-    const { data, error } = await supabase
-      .from('campaign_settings')
-      .select('*')
-      .eq('id', true)
-      .maybeSingle()
+    const [settingsResult, summary, expenseSummary] = await Promise.all([
+      supabase
+        .from('campaign_settings')
+        .select('*')
+        .eq('id', true)
+        .maybeSingle(),
+      getDonationSummary(supabase),
+      getExpenseSummary(supabase, includeExpenses),
+    ])
 
-    if (error) {
-      console.error('Campaign settings fetch error:', error)
+    if (settingsResult.error) {
+      console.error('Campaign settings fetch error:', settingsResult.error)
     }
 
-    const summary = await getDonationSummary()
-    const expenseSummary = await getExpenseSummary()
     const settings = {
       ...defaultCampaignSettings,
-      ...(data || {}),
+      ...(settingsResult.data || {}),
     } as CampaignSettings
 
-    return NextResponse.json({
-      settings,
-      ...summary,
-      ...expenseSummary,
-      remainingAmount: summary.totalAmount - expenseSummary.totalSpent,
-    })
+    return NextResponse.json(
+      {
+        settings,
+        ...summary,
+        ...expenseSummary,
+        remainingAmount: summary.totalAmount - expenseSummary.totalSpent,
+      },
+      {
+        headers: {
+          'Cache-Control': 's-maxage=15, stale-while-revalidate=60',
+        },
+      }
+    )
   } catch (error) {
     console.error('Campaign API error:', error)
     return NextResponse.json({
@@ -88,6 +101,7 @@ export async function GET() {
       totalDonors: 0,
       totalSpent: 0,
       remainingAmount: 0,
+      expenseCount: 0,
       latestDonationAt: null,
       expenses: [],
     })

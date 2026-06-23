@@ -62,7 +62,7 @@ export default function Transparansi() {
               {formatCurrency(campaign.totalSpent)}
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
-              {campaign.expenses.length} catatan belanja
+              {campaign.expenseCount} catatan belanja
             </p>
           </Card>
 

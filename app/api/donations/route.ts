@@ -152,13 +152,13 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const supabase = createAdminSupabaseClient()
 
     const { data, error } = await supabase
       .from('donations')
-      .select('*')
+      .select('id, name, discord_username, amount, payment_method, message, status, created_at, is_anonymous')
       .eq('status', 'approved')
       .order('created_at', { ascending: false })
 
@@ -176,7 +176,14 @@ export async function GET(request: NextRequest) {
       discord_username: donation.is_anonymous ? null : donation.discord_username,
     }))
 
-    return NextResponse.json({ donations: filteredData })
+    return NextResponse.json(
+      { donations: filteredData },
+      {
+        headers: {
+          'Cache-Control': 's-maxage=15, stale-while-revalidate=60',
+        },
+      }
+    )
   } catch (error) {
     console.error('Error:', error)
     return NextResponse.json(
