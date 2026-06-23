@@ -1,11 +1,25 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Bangers, Geist_Mono, Poppins } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-poppins',
+})
+
+const bangers = Bangers({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-bangers',
+})
+
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-geist-mono',
+})
 
 export const metadata: Metadata = {
   title: 'Devilish Charity',
@@ -39,7 +53,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className="bg-background">
-      <body className="font-sans antialiased">
+      <body className={`${poppins.variable} ${bangers.variable} ${geistMono.variable} font-sans antialiased`}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

@@ -24,7 +24,7 @@ export default function Guide() {
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-foreground">
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 text-foreground tracking-normal">
               Panduan <span className="text-primary">Donasi</span>
             </h1>
             <p className="text-lg md:text-xl max-w-2xl mx-auto text-muted-foreground leading-relaxed text-balance">
@@ -143,7 +143,7 @@ export default function Guide() {
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center text-foreground">
+            <h2 className="font-display text-4xl font-bold mb-12 text-center text-foreground tracking-normal">
               Pertanyaan <span className="text-primary">Umum</span>
             </h2>
 
@@ -194,7 +194,7 @@ export default function Guide() {
           <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance tracking-normal">
               Siap Berbagi dan Membuat <span className="text-primary">Perbedaan</span>?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 text-balance">

@@ -355,7 +355,7 @@ export default function Donate() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-foreground">
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 text-foreground tracking-normal">
               Form <span className="text-primary">Donasi</span>
             </h1>
 
@@ -380,7 +380,7 @@ export default function Donate() {
           >
             <Card className="p-8 text-center bg-card/50 backdrop-blur-sm border border-primary/20">
               <AlertCircle className="w-10 h-10 mx-auto mb-4 text-primary" />
-              <h2 className="text-2xl font-bold text-foreground mb-3">
+              <h2 className="font-display text-3xl font-bold text-foreground mb-3 tracking-normal">
                 Form Donasi Sedang Ditutup
               </h2>
               <p className="text-muted-foreground leading-relaxed">

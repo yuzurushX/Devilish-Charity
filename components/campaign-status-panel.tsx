@@ -76,7 +76,7 @@ export function CampaignStatusPanel({
               {isClosed ? 'Donasi Sedang Ditutup' : 'Donasi Sedang Dibuka'}
             </div>
 
-            <h2 className="text-2xl font-bold text-foreground md:text-3xl">
+            <h2 className="font-display text-3xl font-bold text-foreground md:text-4xl tracking-normal">
               {settings.campaign_title}
             </h2>
 

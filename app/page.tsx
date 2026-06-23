@@ -40,7 +40,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6"
+                className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-foreground mb-6 tracking-normal"
               >
                 Devilish{' '}
                 <span className="text-primary glow-text">Charity</span>
@@ -93,7 +93,7 @@ export default function Home() {
 
         {/* Features */}
         <section className="container mx-auto px-4 py-20">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-12 text-foreground tracking-normal">
             Berdonasi <span className="text-primary">Bersama Kami</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
@@ -156,7 +156,7 @@ export default function Home() {
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-6 mx-auto">
                 <Heart className="w-8 h-8 text-primary fill-primary" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+              <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance tracking-normal">
                 Bersama, Kita Buat Perubahan yang <span className="text-primary">Berarti</span>
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 text-balance">

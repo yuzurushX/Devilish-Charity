@@ -39,7 +39,7 @@ export default function DanaKeluar() {
         </Link>
 
         <div className="max-w-4xl mb-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h1 className="font-display text-5xl md:text-6xl font-bold text-foreground mb-4 tracking-normal">
             Dana <span className="text-primary">Keluar</span>
           </h1>
           <p className="text-lg text-muted-foreground">

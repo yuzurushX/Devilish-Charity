@@ -28,7 +28,7 @@ export default function Transparansi() {
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-foreground">
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 text-foreground tracking-normal">
               Transparansi <span className="text-primary">Donasi</span>
             </h1>
             <p className="text-lg md:text-xl max-w-2xl mx-auto text-muted-foreground leading-relaxed text-balance">
@@ -81,7 +81,7 @@ export default function Transparansi() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
           <Card className="p-6 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40 transition-colors">
             <Users className="w-8 h-8 mb-4 text-primary" />
-            <h2 className="text-2xl font-bold text-foreground mb-2">
+            <h2 className="font-display text-3xl font-bold text-foreground mb-2 tracking-normal">
               Donasi Masuk
             </h2>
             <p className="text-muted-foreground mb-6">
@@ -97,7 +97,7 @@ export default function Transparansi() {
 
           <Card className="p-6 bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40 transition-colors">
             <ReceiptText className="w-8 h-8 mb-4 text-primary" />
-            <h2 className="text-2xl font-bold text-foreground mb-2">
+            <h2 className="font-display text-3xl font-bold text-foreground mb-2 tracking-normal">
               Dana Keluar
             </h2>
             <p className="text-muted-foreground mb-6">
