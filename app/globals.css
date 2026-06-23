@@ -4,43 +4,43 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.12 0.01 30);
-  --foreground: oklch(0.95 0.01 60);
-  --card: oklch(0.15 0.01 30);
-  --card-foreground: oklch(0.95 0.01 60);
-  --popover: oklch(0.15 0.01 30);
-  --popover-foreground: oklch(0.95 0.01 60);
-  --primary: oklch(0.55 0.2 25);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.2 0.02 30);
-  --secondary-foreground: oklch(0.9 0.01 60);
-  --muted: oklch(0.2 0.02 30);
-  --muted-foreground: oklch(0.65 0.02 60);
-  --accent: oklch(0.6 0.18 45);
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.5 0.2 25);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.25 0.02 30);
-  --input: oklch(0.2 0.02 30);
-  --ring: oklch(0.55 0.2 25);
-  --chart-1: oklch(0.55 0.2 25);
-  --chart-2: oklch(0.6 0.18 45);
-  --chart-3: oklch(0.5 0.15 15);
-  --chart-4: oklch(0.65 0.12 60);
-  --chart-5: oklch(0.45 0.18 30);
+  --background: #fff4e8;
+  --foreground: #2a0b08;
+  --card: #fffaf3;
+  --card-foreground: #2a0b08;
+  --popover: #fffaf3;
+  --popover-foreground: #2a0b08;
+  --primary: #b50000;
+  --primary-foreground: #fff8ef;
+  --secondary: #f5dfcf;
+  --secondary-foreground: #4c1d17;
+  --muted: #f5dfcf;
+  --muted-foreground: #7a4a3f;
+  --accent: #e53935;
+  --accent-foreground: #fff8ef;
+  --destructive: #b50000;
+  --destructive-foreground: #fff8ef;
+  --border: #e6b9aa;
+  --input: #fffaf3;
+  --ring: #b50000;
+  --chart-1: #b50000;
+  --chart-2: #e53935;
+  --chart-3: #c97900;
+  --chart-4: #2f7d46;
+  --chart-5: #7a4a3f;
   --radius: 0.75rem;
-  --sidebar: oklch(0.1 0.01 30);
-  --sidebar-foreground: oklch(0.95 0.01 60);
-  --sidebar-primary: oklch(0.55 0.2 25);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.2 0.02 30);
-  --sidebar-accent-foreground: oklch(0.95 0.01 60);
-  --sidebar-border: oklch(0.25 0.02 30);
-  --sidebar-ring: oklch(0.55 0.2 25);
+  --sidebar: #fffaf3;
+  --sidebar-foreground: #2a0b08;
+  --sidebar-primary: #b50000;
+  --sidebar-primary-foreground: #fff8ef;
+  --sidebar-accent: #f5dfcf;
+  --sidebar-accent-foreground: #4c1d17;
+  --sidebar-border: #e6b9aa;
+  --sidebar-ring: #b50000;
 
   /* Custom charity colors */
-  --glow: oklch(0.55 0.2 25 / 0.3);
-  --glow-accent: oklch(0.6 0.18 45 / 0.3);
+  --glow: rgb(181 0 0 / 0.18);
+  --glow-accent: rgb(229 57 53 / 0.16);
 }
 
 @theme inline {

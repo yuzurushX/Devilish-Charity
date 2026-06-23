@@ -40,7 +40,7 @@ export default function Guide() {
           {/* Step 1 */}
           <Card className="p-8 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40">
             <div className="flex gap-6">
-              <div className="flex items-center justify-center h-12 w-12 rounded-lg text-white text-lg font-bold bg-primary/20 text-primary shrink-0">
+              <div className="flex items-center justify-center h-12 w-12 rounded-lg text-lg font-bold bg-primary/20 text-primary shrink-0">
                 1
               </div>
               <div>
@@ -57,7 +57,7 @@ export default function Guide() {
           {/* Step 2 */}
           <Card className="p-8 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40">
             <div className="flex gap-6">
-              <div className="flex items-center justify-center h-12 w-12 rounded-lg text-white text-lg font-bold bg-primary/20 text-primary shrink-0">
+              <div className="flex items-center justify-center h-12 w-12 rounded-lg text-lg font-bold bg-primary/20 text-primary shrink-0">
                 2
               </div>
               <div>
@@ -78,7 +78,7 @@ export default function Guide() {
           {/* Step 3 */}
           <Card className="p-8 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40">
             <div className="flex gap-6">
-              <div className="flex items-center justify-center h-12 w-12 rounded-lg text-white text-lg font-bold bg-primary/20 text-primary shrink-0">
+              <div className="flex items-center justify-center h-12 w-12 rounded-lg text-lg font-bold bg-primary/20 text-primary shrink-0">
                 3
               </div>
               <div>
@@ -99,7 +99,7 @@ export default function Guide() {
           {/* Step 4 */}
           <Card className="p-8 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40">
             <div className="flex gap-6">
-              <div className="flex items-center justify-center h-12 w-12 rounded-lg text-white text-lg font-bold bg-primary/20 text-primary shrink-0">
+              <div className="flex items-center justify-center h-12 w-12 rounded-lg text-lg font-bold bg-primary/20 text-primary shrink-0">
                 4
               </div>
               <div>
@@ -119,7 +119,7 @@ export default function Guide() {
           {/* Step 5 */}
           <Card className="p-8 hover:shadow-lg transition-shadow bg-card/50 backdrop-blur-sm border border-primary/20 hover:border-primary/40">
             <div className="flex gap-6">
-              <div className="flex items-center justify-center h-12 w-12 rounded-lg text-white text-lg font-bold bg-primary/20 text-primary shrink-0">
+              <div className="flex items-center justify-center h-12 w-12 rounded-lg text-lg font-bold bg-primary/20 text-primary shrink-0">
                 5
               </div>
               <div>
