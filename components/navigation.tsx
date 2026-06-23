@@ -32,14 +32,15 @@ export function Navigation() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative h-10 w-auto">
+        <Link href="/" className="flex h-16 items-center gap-3 group">
+          <div className="relative h-12 w-28 overflow-hidden">
             <Image 
               src="/devilish-charity-logo.webp" 
               alt="Devilish Charity" 
-              height={40}
-              width={120}
-              className="object-contain group-hover:scale-105 transition-transform"
+              fill
+              priority
+              className="object-contain object-left group-hover:scale-105 transition-transform"
+              sizes="112px"
             />
           </div>
         </Link>
