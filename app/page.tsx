@@ -9,6 +9,7 @@ import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { ActivitiesCard } from '@/components/activities-card'
 import { CampaignStatusPanel } from '@/components/campaign-status-panel'
+import { PosterDecorations } from '@/components/poster-decorations'
 import { useCampaignSummary } from '@/hooks/use-campaign-summary'
 
 export default function Home() {
@@ -24,8 +25,7 @@ export default function Home() {
         {/* Hero */}
         <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+          <PosterDecorations />
 
           <div className="container mx-auto px-4 relative z-10 py-16">
             <div className="max-w-4xl mx-auto text-center">
@@ -148,10 +148,9 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/20 via-primary/10 to-accent/10 border border-primary/20 p-8 md:p-16 text-center"
+            className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/15 via-card to-accent/10 border border-primary/20 p-8 md:p-16 text-center"
           >
-            <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
+            <PosterDecorations compact className="opacity-60" />
             <div className="relative z-10">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-6 mx-auto">
                 <Heart className="w-8 h-8 text-primary fill-primary" />

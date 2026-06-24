@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { CampaignStatusPanel } from '@/components/campaign-status-panel'
+import { PosterDecorations } from '@/components/poster-decorations'
 import { useCampaignSummary } from '@/hooks/use-campaign-summary'
 
 import {
@@ -350,8 +351,7 @@ export default function Donate() {
 
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden py-12">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
-
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <PosterDecorations compact />
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">

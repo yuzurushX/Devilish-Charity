@@ -16,6 +16,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { campaignStageLabels, type CampaignStage } from '@/lib/campaign-types'
 import { useCampaignSummary } from '@/hooks/use-campaign-summary'
+import { PosterDecorations } from '@/components/poster-decorations'
 
 const stages: CampaignStage[] = [
   'open',
@@ -68,8 +69,9 @@ export function CampaignStatusPanel({
     >
       <Card className="relative overflow-hidden border-primary/20 bg-card/60 p-6 backdrop-blur-sm">
         <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-accent to-primary" />
+        <PosterDecorations compact className="opacity-25" />
 
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+        <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-2xl">
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
               {isClosed ? <Clock className="h-4 w-4" /> : <HeartHandshake className="h-4 w-4" />}
@@ -172,7 +174,7 @@ export function CampaignStatusPanel({
         </div>
 
         {!compact && (
-          <div className="mt-8">
+          <div className="relative z-10 mt-8">
             <div className="grid gap-3 md:grid-cols-5">
               {stages.map((stage, index) => {
                 const isComplete = index <= currentStageIndex
@@ -210,7 +212,7 @@ export function CampaignStatusPanel({
         )}
 
         {showAction && (
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <div className="relative z-10 mt-6 flex flex-col gap-3 sm:flex-row">
             {isClosed ? (
               <Link href="/transparansi">
                 <Button className="w-full sm:w-auto">Lihat Progress</Button>

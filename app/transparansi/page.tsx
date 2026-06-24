@@ -7,6 +7,7 @@ import { Card } from '@/components/ui/card'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { CampaignStatusPanel } from '@/components/campaign-status-panel'
+import { PosterDecorations } from '@/components/poster-decorations'
 import { useCampaignSummary } from '@/hooks/use-campaign-summary'
 
 export default function Transparansi() {
@@ -25,7 +26,7 @@ export default function Transparansi() {
 
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden py-12">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <PosterDecorations compact />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 text-foreground tracking-normal">

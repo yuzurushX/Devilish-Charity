@@ -6,6 +6,7 @@ import Link from "next/link"
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { Card } from '@/components/ui/card'
+import { PosterDecorations } from '@/components/poster-decorations'
 import { useCampaignSummary } from '@/hooks/use-campaign-summary'
 
 export default function Guide() {
@@ -21,7 +22,7 @@ export default function Guide() {
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden py-12">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <PosterDecorations compact />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 text-foreground tracking-normal">
@@ -191,8 +192,7 @@ export default function Guide() {
       {/* CTA */}
       <section className="container mx-auto px-4 py-16">
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/20 via-primary/10 to-accent/10 border border-primary/20 p-8 md:p-16 text-center">
-          <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
+          <PosterDecorations compact className="opacity-60" />
           <div className="relative z-10">
             <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance tracking-normal">
               Siap Berbagi dan Membuat <span className="text-primary">Perbedaan</span>?
